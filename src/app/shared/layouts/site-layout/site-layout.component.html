@@ -1,0 +1,17 @@
+<div class="inf-line">
+  <a class="a-name" routerLink="">
+    <p class="name">СheesyPet</p>
+  </a>
+  <div class="flexbox-block">
+    <li class="bold-active" *ngFor="let link of links">
+      <a [routerLink]="[link.url]" class="tag-a">
+        <button class="link-button"> {{link.name}}
+        </button>
+      </a>
+    </li>
+  </div>
+  <div class="check-role" *ngIf="isAdmin">
+    <app-admin-toggle></app-admin-toggle>
+  </div>
+</div>
+<router-outlet></router-outlet>

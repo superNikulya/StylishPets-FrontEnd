@@ -1,0 +1,71 @@
+<div class="wrapper">
+  <div *ngFor="let product of products">
+    <div class="added-product-line">
+      <div class ="added-product-name">{{product.name}}</div>
+      <div class="delete-added-product"></div>
+    </div>
+  </div>
+  <div>ffff</div>
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="product-window">
+      <label class="title"> create a new product </label>
+      <input class="product-name-input"
+             placeholder="add product name"
+             formControlName="name"
+             id="name"
+             required>
+      <span class="helper-text red-text"
+            *ngIf="form.controls['name']?.errors?.['required']
+            && (form.controls['name']?.dirty
+            || form.controls['name']?.touched)">
+        <span class="span">
+          category name cannot be empty
+        </span>
+      </span>
+      <div class="img-upload-wrapper">
+        <input type="file"
+               class="dn"
+               (change)="onFileUpload($event)"
+               #input>
+        <button (click)="saveImgClick()"
+                class="img-upload-button"
+                [disabled] ="form.disabled"
+                type="button">
+          upload image
+        </button>
+      </div>
+      <div class="image-preview">
+        <img *ngIf="imagePreview"
+              type="submit"
+              [src]="imagePreview"
+              class="responsive-img h150">
+      </div>
+      <input class="product-price-input"
+             placeholder="add product price"
+             formControlName="price"
+             id="price"
+             required>
+      <span class="helper-text red-text"
+            *ngIf="form.controls['price']?.errors?.['required']
+            && (form.controls['price']?.dirty
+            || form.controls['price']?.touched)">
+        <span class="span">
+          this field cannot be empty
+        </span>
+      </span>
+      <input class="product-characteristic-input"
+             placeholder="add product characteristic"
+             formControlName="characteristic"
+             id="characteristic"
+             required>
+      <button class="add-product-button"
+              type="submit"
+              [disabled]="form.invalid||form.disabled">
+        save product
+      </button>
+      <div class="close-button" (click)="close()">
+        I`m done
+      </div>
+    </div>
+  </form>
+</div>

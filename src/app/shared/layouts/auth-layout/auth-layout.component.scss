@@ -1,0 +1,41 @@
+.inf-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  .name {
+    display: flex;
+    font-family: 'Caveat', cursive;
+    font-size: 50px;
+    text-decoration-style: initial;
+    font-style: italic;
+    color: #ffa3b6
+  }
+}
+.buttons{
+  display: flex;
+  flex-direction: row;
+  width: 45%;
+  justify-content: space-between;
+  align-items: flex-end;
+  align-content: space-between;
+    button {
+      display: inline-block;
+      background-color: #ff8cce;
+      width: 280px;
+      height: 50px;
+      border-radius: 5px;
+      outline: none;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s linear;
+      margin: 3% ;
+      letter-spacing: 0.05em;
+    }
+}
+a{
+  text-decoration: none;
+  .name{
+    color: #ffa3b6
+  }
+}

@@ -1,0 +1,54 @@
+$coffee-color: #f6e5dc;
+$main-font: Arial,Helvetica,sans-serif;
+$poppins-extralight-font: poppins-extralight,poppins,sans-serif;
+$poppins-semibold-font: poppins-semibold,poppins,sans-serif;
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: auto;
+  width: auto;
+  left: 6%;
+  right: 6%;
+  top: 16%;
+  flex-wrap: wrap;
+  .greeting{
+    margin: 20px;
+    align-content: flex-start;
+    font-size: 30px;
+    font-family: $poppins-semibold-font;
+    padding: 45px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: 500;
+  }
+  .hr{
+      width: 600px;
+      color: black;
+  }
+  .add-category-div{
+    display: flex;
+    justify-content: center;
+    .add-category-button {
+      font-family: $poppins-semibold-font;
+      font-size: 30px;
+      margin: 40px;
+      cursor: pointer;
+      width: fit-content;
+      align-content: center;
+      text-align: center;
+      color: #e3ae25;
+      &:hover {
+        color: #e7e63f;
+        transform: translateY(2px)
+      }
+    }
+  }
+  .title-category-change {
+    font-family: $poppins-semibold-font;
+    margin: 40px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+  }
+}

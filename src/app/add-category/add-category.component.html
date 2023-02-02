@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <form class="form" [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="category-window">
+      <label class="title"> You can add a new category </label>
+      <input class="add-category-name-input"
+             type="text"
+             placeholder="add category name"
+             formControlName="name"
+             id="name"
+             required>
+      <span class="helper-text red-text"
+            *ngIf="myForm.controls['name']?.errors?.['required']
+            && (myForm.controls['name']?.dirty
+            || myForm.controls['name']?.touched)">
+        <span class="span">
+          product name cannot be empty
+        </span>
+      </span>
+      <button class="add-button"
+              type="submit"
+              [disabled]="myForm.invalid||myForm.disabled">
+          save category
+      </button>
+      <div class="add-product" *ngIf="condition==true" >
+        <p> please add not less then one product</p>
+      </div>
+    </div>
+  </form>
+  <div *ngIf="condition==true">
+    <app-add-product
+      [categoryId]="category._id"
+      [categoryName]="category.name"
+    ></app-add-product>
+  </div>
+</div>
+

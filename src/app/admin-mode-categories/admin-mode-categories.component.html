@@ -1,0 +1,23 @@
+<div class="wrapper">
+  <div class="categories-flex">
+    <p class="categories-title">Categories</p>
+    <hr>
+    <div *ngFor="let category of categories; let i = index" class="block">
+      <div class="default-category-button"
+           (click)="changeCategory(i)">
+        <div class="default-category-button"
+             [ngStyle]="(category._id == updatedCategoryId) ? {'color': '#e3ae25'}: {'color':'black'}">
+          {{category.name}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let category of categories; let i = index">
+    <app-form *ngIf="currentCategory==i"
+                       (categoryUpdate)="onCategoryUpdate($event)"
+                       (categoryDelete)="onCategoryDelete($event)"
+                       [categoryName]="category.name"
+                       [categoryId]="category._id">
+    </app-form>
+  </div>
+</div>

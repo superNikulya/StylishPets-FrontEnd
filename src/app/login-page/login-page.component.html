@@ -1,0 +1,52 @@
+<form
+  class="form"
+  [formGroup]="myForm"
+  (ngSubmit) = "onSubmit()">
+    <div class="overlay">
+        <div class="con">
+            <header class="head-form">
+                <h2>Log In</h2>
+                <p>login here using your username and password</p>
+            </header>
+            <br>
+            <div class="field-set">
+                <div class="input-flex">
+                    <input formControlName="email"
+                       class="form-input"
+                       id="txt-input"
+                       type="text"
+                       placeholder="email:"
+                       [ngClass]="{invalid: myForm.get('email')?.invalid&&myForm.get('email')?.touched}"
+                       required>
+                    <span class = "helper-text red-text" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
+                        <span *ngIf="myForm.get('email')?.getError('required')"> Заполните поле Email</span>
+                        <span *ngIf="myForm.get('email')?.getError('email')"> Введите корректный Email </span>
+                    </span>
+                </div>
+                <br>
+                <div class="input-flex">
+                <input formControlName="password"
+                   class="form-input"
+                       type="password"
+                   placeholder="Password"
+                   id="pwd"
+                   name="password"
+                   [ngClass]="{invalid: myForm.get('password')?.invalid&&myForm.get('password')?.touched}"
+                   required>
+                <span class = "helper-text red-text" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">
+                    <span *ngIf="myForm.get('password')?.getError('required')"> This field cannot be empty </span>
+                    <span *ngIf="myForm.get('password')?.getError('minlength')&&myForm.get('password')?.getError('minlength').requiredLength"> Пароль не может быть больше
+                        {{myForm.get('password')?.getError('minlength').requiredLength}} symbols! </span>
+                </span>
+                <span> </span>
+                <br>
+                </div>
+                <button type ="submit"
+                    class="log-in"
+                    [disabled]="myForm.invalid ||myForm.disabled">
+                    Log In
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

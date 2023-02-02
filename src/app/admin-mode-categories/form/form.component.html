@@ -1,0 +1,205 @@
+<div class="form-content-wrapper">
+  <form class="form" [formGroup]="categoryForm" (ngSubmit)="updateCategory()">
+    <div class="categories-window" >
+      <div class="flexbox-container">
+        <div class="snackbar" *ngIf="condition==true">Category was changed!</div>
+        <label class="category-title"> You can change a name of the category </label>
+        <input class="category-name-input"
+               type="text"
+               formControlName="name"
+               id="name"
+               required>
+        <span class="helper-text red-text"
+              *ngIf="categoryForm.controls['name']!.errors?.['required']
+              && (categoryForm.controls['name']!.dirty
+              || categoryForm.controls['name']!.touched)">
+          <span class="span">
+            category name cannot be empty
+          </span>
+        </span>
+        <button class="add-category-button"
+                type="submit"
+                [disabled]="categoryForm.invalid||categoryForm.disabled">
+            save all
+        </button>
+      </div>
+      <button class="delete-btn-wrap" type="button" (click)="deleteCategory() ">
+            Delete this category
+        <div class="material-icons">
+          delete
+        </div>
+      </button>
+    </div>
+  </form>
+
+  <div class="pop-up" *ngIf="productNew">
+    <form class="product-form" [formGroup]="productForm" (ngSubmit)="addProduct($event)" >
+      <div class="product-window">
+        <div class="product-title">
+          You can add a new product
+        </div>
+        <div class="close-new-product">
+          <div (click)="closeNewProduct()"
+               class="material-icons">
+            close
+          </div>
+        </div>
+        <input class ="product-input"
+               formControlName="name"
+               placeholder="product title"
+               type="text"
+               required>
+        <span class="helper-text red-text"
+              *ngIf="productForm.controls['name']?.errors?.['required']
+                && (productForm.controls['name']?.dirty
+                || productForm.controls['name']?.touched)">
+            <span class="span">
+                category name cannot be empty
+            </span>
+          </span>
+        <div class="img-upload-wrapper">
+          <input type="file"
+                 class="dn"
+                 (change)="onFileUpload($event)"
+                 #input>
+          <button (click)="saveImgClick()"
+                  class="img-upload-button"
+                  [disabled] ="productForm.disabled"
+                  type="button">
+            change image
+          </button>
+        </div>
+        <div class="image">
+          <img *ngIf="imagePreview"
+               type="submit"
+               [src]="imagePreview"
+               class="responsive-img h150">
+        </div>
+        <input  class="product-input"
+                type="text"
+                formControlName="price"
+                placeholder="product price"
+                id="price">
+        <span class="helper-text red-text"
+              *ngIf="productForm.controls['price']?.errors?.['required']
+                && (productForm.controls['price']?.dirty
+                || productForm.controls['price']?.touched)">
+            <span class="span">
+              this field cannot be empty
+            </span>
+          </span>
+        <input class="product-input"
+               type="text"
+               formControlName="characteristic"
+               placeholder="product characteristic"
+               id="characteristic"
+               required>
+        <span class="helper-text red-text"
+              *ngIf="productForm.controls['characteristic']?.errors?.['required']
+                && (productForm.controls['characteristic']?.dirty
+                || productForm.controls['characteristic']?.touched)">
+            <span class="span">
+              this field cannot be empty
+            </span>
+          </span>
+        <button class="add-product-button"
+                type="submit"
+                [disabled]="productForm.invalid||productForm.disabled">
+          save all
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <form class="product-form" [formGroup]="productForm">
+      <div class="product-title">
+          You can change products of this category
+      </div>
+
+      <div class ="add-product-button"
+           (click)="addNewProduct()">
+        Add a new product
+      </div>
+    <div *ngFor="let product of products let i = index ">
+      <div class="buttons-wrapper">
+        <button (click)="changeProduct( i , product)" class="product-button">
+          {{product.name}}
+        </button>
+      </div>
+      <div *ngIf="currentProduct===i" >
+        <div class="product-window">
+          <input class ="product-input"
+                 formControlName="name"
+                 type="text"
+                 required>
+          <span class="helper-text red-text"
+                *ngIf="productForm.controls['name']?.errors?.['required']
+                && (productForm.controls['name']?.dirty
+                || productForm.controls['name']?.touched)">
+            <span class="span">
+                category name cannot be empty
+            </span>
+          </span>
+          <div class="img-upload-wrapper">
+            <input type="file"
+                   class="dn"
+                   (change)="onFileUpload($event)"
+                    #input>
+            <button (click)="saveImgClick()"
+                    class="img-upload-button"
+                    [disabled] ="productForm.disabled"
+                    type="button">
+                change image
+            </button>
+          </div>
+          <div class="image">
+            <img *ngIf="imagePreview; else photo"
+                 [src]="imagePreview"
+                 class="responsive-img h150">
+            <ng-template #photo >
+              <img [src]="product.imageSrc"
+               class="image-preview">
+          </ng-template>
+          </div>
+          <input  class="product-input"
+                  type="text"
+                  formControlName="price"
+                  id="price">
+          <span class="helper-text red-text"
+                *ngIf="productForm.controls['price']?.errors?.['required']
+                && (productForm.controls['price']?.dirty
+                || productForm.controls['price']?.touched)">
+            <span class="span">
+              this field cannot be empty
+            </span>
+          </span>
+          <input class="product-input"
+                 type="text"
+                 formControlName="characteristic"
+                 id="characteristic"
+                 required>
+          <span class="helper-text red-text"
+                *ngIf="productForm.controls['characteristic']?.errors?.['required']
+                && (productForm.controls['characteristic']?.dirty
+                || productForm.controls['characteristic']?.touched)">
+            <span class="span">
+              this field cannot be empty
+            </span>
+          </span>
+          <button class="add-product-button"
+                  (click)="updateProduct($event); $event.stopPropagation()"
+                  [disabled]="productForm.invalid||productForm.disabled">
+              save all
+          </button>
+          <button class="delete-btn-wrap"
+          (click)="deleteProduct()">
+              delete this product
+            <div class="material-icons">
+              delete
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

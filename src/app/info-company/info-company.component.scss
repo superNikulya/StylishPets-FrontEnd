@@ -1,0 +1,36 @@
+$main-font: Arial,Helvetica,sans-serif;
+.wrapper{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  height: auto;
+  left: 6%;
+  right: 6%;
+  top: 16%;
+  background-color: white;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .text-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    padding: 40px;
+    .title{
+      font-family: $main-font;
+      font-weight: 600;
+      font-size: 50px;
+      text-align: center;
+      margin: 50px;
+    }
+    .about-us-text{
+      font-family: $main-font;
+      font-size: 15px;
+      text-align: center;
+      line-height: 30px;
+    }
+  }
+  .image{
+    width: 50%;
+    height:100%;
+  }
+}

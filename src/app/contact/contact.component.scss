@@ -1,0 +1,40 @@
+$main-font: Arial,Helvetica,sans-serif;
+$poppins-extralight-font: poppins-extralight,poppins,sans-serif;
+$poppins-semibold-font: poppins-semibold,poppins,sans-serif;
+.wrapper{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  height: auto;
+  left: 6%;
+  right: 6%;
+  top: 16%;
+  background-color: white;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .information-flexbox{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    padding: 40px;
+    .contact-title {
+      font-family: $poppins-semibold-font;
+      font-weight: 600;
+      font-size: 50px;
+      text-align: center;
+      margin: 50px;
+      line-height: 40px;
+    }
+    .contacts-inf {
+      font-family: $poppins-semibold-font;
+      font-size: 17px;
+      text-align: center;
+      line-height: 27px;
+      font-weight: 500;
+    }
+}
+  .image {
+      width: 50%;
+      height: 100%;
+  }
+}

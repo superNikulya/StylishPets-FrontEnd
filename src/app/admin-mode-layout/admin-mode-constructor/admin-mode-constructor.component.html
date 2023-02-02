@@ -1,0 +1,18 @@
+<div class="wrapper">
+  <div [ngStyle]="{'background-color': 'white'}" >
+    <p class="greeting">
+      Hi, Admin. This mode provides guidance for creating and changing categories and products
+    </p>
+    <hr class="hr">
+    <div class="add-category-div">
+      <div [routerLink]="'/admin-mode/admin-categories/new/'"
+           class="add-category-button">
+        Tap here to add a new category
+      </div>
+    </div>
+    <div class="title-category-change">
+      or click on category to change
+    </div>
+  </div>
+  <app-admin-mode-categories></app-admin-mode-categories>
+</div>

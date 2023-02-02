@@ -1,0 +1,174 @@
+$main-font: Arial,Helvetica,sans-serif;
+$coffee-color: #fff2ef;
+$poppins-extralight-font: poppins-extralight,poppins,sans-serif;
+$poppins-semibold-font: poppins-semibold,poppins,sans-serif;
+.form-content-wrapper {
+  width: 600px;
+  .categories-window {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $coffee-color;
+    font-size: 20px;
+    margin: 3px;
+    border: 1px solid black;
+    .flexbox-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      .snackbar {
+        width: 200px;
+        height: 40px;
+        padding: 10px;
+        background-color: #ffe4e4;
+        font-family: $poppins-semibold-font;
+        color: #000000;
+        font-size: 15px;
+        text-align: center;
+        margin: 15px;
+      }
+      .category-name-input {
+        text-align: center;
+        color: #000000;
+        margin: 5px;
+      }
+      .add-category-button {
+        font-family: $poppins-semibold-font;
+        font-size: 18px;
+        margin: 15px;
+        background-color: $coffee-color;
+        border: 1px solid #000000;
+        box-shadow: 0px 5px 10px $coffee-color;
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        outline: none;
+        color: #000000;
+        &:hover {
+          background-color: #ffffff;
+          box-shadow: 0px 15px 20px rgb(255, 219, 190);
+          color: grey;
+          transform: translateY(-7px);
+        }
+      }
+    }
+  }
+
+  .product-title{
+    text-align: center;
+    font-family: $poppins-semibold-font;
+  }
+  .add-product-button{
+    background-color: #ffe2f4;
+    text-align: center;
+    margin: 15px;
+    font-size: 20px;
+    padding: 8px;
+    color: #000000;
+    border: #ffede0 solid 1px;
+    font-family: $poppins-semibold-font;
+    &:hover{
+      background-color: #ffdff1;
+      box-shadow: 0px 15px 20px rgb(213, 136, 179);
+      color: grey;
+      transform: translateY(-7px);
+    }
+  }
+  .buttons-wrapper{
+    display: flex;
+    flex-direction: column;
+    .product-button{
+      background-color: #ffeded;
+      margin: 3px;
+      font-size: 20px;
+      padding: 3px;
+      color: #000000;
+      border: #ffede0 solid 1px;
+      font-family: $poppins-semibold-font;
+      &:hover{
+        background-color: #ffffff;
+        box-shadow: 0px 15px 20px rgb(246, 218, 157);
+        color: grey;
+        transform: translateY(-7px);
+      }
+    }
+  }
+  .product-title {
+    text-align: center;
+    font-family: $poppins-semibold-font;
+    font-size: 25px;
+    color: rosybrown;
+    margin: 15px;
+  }
+  .product-window {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 15px;
+    .dn {
+        display: none;
+    }
+    .img-upload-button {
+      background-color: #ffe9f2;
+      margin: 10px;
+      border: 1px solid black;
+    }
+    .image{
+      display: flex;
+      width: 40% ;
+      .image-preview{
+        width: 100%;
+      }
+    }
+    .product-input {
+      text-align: center;
+      color: #000000;
+      margin: 5px;
+      padding: 5px;
+      overflow-wrap: break-word;
+    }
+    .add-product-button {
+      font-family: $poppins-semibold-font;
+      font-size: 18px;
+      margin: 15px;
+      background-color: $coffee-color;
+      border: 1px solid #000000;
+      box-shadow: 0px 5px 10px $coffee-color;
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+      outline: none;
+      color: #000000;
+      &:hover {
+        background-color: #ffffff;
+        box-shadow: 0px 15px 20px rgb(255, 219, 190);
+        color: grey;
+        transform: translateY(-7px);
+      }
+    }
+  }
+}
+.pop-up{
+ position: relative;
+  width: 600px;
+  .close-new-product{
+    position: relative;
+    left: 270px;
+    bottom: 50px;
+    cursor: pointer;
+  }
+}
+//common styles
+.delete-btn-wrap {
+    font-family: $poppins-semibold-font;
+    border: 1px solid black;
+    background-color: #ffe5e1;
+    &:hover {
+        transform: translateY(-1px);
+        background-color: #ffd47a;
+    }
+}

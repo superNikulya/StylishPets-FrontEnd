@@ -1,0 +1,51 @@
+$coffee-color: #f6e5dc;
+$main-font: Arial,Helvetica,sans-serif;
+$poppins-extralight-font: poppins-extralight,poppins,sans-serif;
+$poppins-semibold-font: poppins-semibold,poppins,sans-serif;
+.inf-line {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+  justify-content: space-between;
+  background-color: $coffee-color;
+  .a-name {
+    width: auto;
+    height: 100%;
+    margin:2%;
+    padding-left: 70px;
+    .name {
+      color: #000000;
+      font-size: 35px;
+      font-family: $poppins-semibold-font;
+      font-weight: 700;
+      margin: 5%;
+      cursor: pointer;
+    }
+  }
+  .flexbox-block {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 15px;
+    padding-right: 70px;
+    .link-button {
+      width: auto;
+      height: 50px;
+      cursor: pointer;
+      font-family: $poppins-semibold-font;
+      font-weight: 700;
+      font-style: initial;
+      color: #000000;
+      font-size: 17px;
+      padding: 10px;
+      border: none;
+      background: none;
+      .link-button:hover {
+        color: gray;
+        transition: var(--trans, margin-left);
+      }
+    }
+  }
+}
