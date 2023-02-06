@@ -1,0 +1,99 @@
+$main-font: Arial,Helvetica,sans-serif;
+$coffee-color: #fff6f2;
+$poppins-extralight-font: poppins-extralight,poppins,sans-serif;
+$poppins-semibold-font: poppins-semibold,poppins,sans-serif;
+
+.wrapper{
+  height: auto;
+  background-color: white;
+  margin-right: 6%;
+  margin-left: 6%;
+  margin-top: 8%;
+  .content-holder{
+    display: flex;
+    flex-direction: row;
+    .left-flex{
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin: 5%;
+      .characteristic{
+        font-family: $poppins-extralight-font;
+        font-size: 15px;
+        margin-top: 20px;
+        line-height: 25px;
+        padding: 15px;
+        border: 2px solid black;
+      }
+    }
+    .right-flex{
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin-top: 5%;
+      margin-right: 5%;
+      .name{
+        font-family: $poppins-semibold-font;
+        margin-top: 30px;
+        font-weight: 800;
+        font-size: 30px;
+      }
+      .price{
+        font: normal normal 16px/1.4em poppins-extralight,poppins,sans-serif;
+        margin-top: 30px;
+        font-weight: 800;
+      }
+      .select-title {
+        font-family: $poppins-semibold-font;
+        margin-top: 30px;
+        font-weight: 700;
+        font-size: 20px;
+        margin-bottom: 15px;
+        color: black;
+      }
+      .select {
+        width: 200px;
+        background-color: #ffffff;
+        color: black;
+        padding: 10px;
+        border: 1px solid lightgrey;
+        .option{
+          color: black;
+        }
+      }
+      .add-to-cart{
+        width: 80%;
+        height: fit-content;
+        color: white;
+        padding: 15px;
+        font-family: $poppins-semibold-font;
+        font-weight: 700;
+        font-size: 25px;
+        margin-top: 8%;
+        background-color: rgba(255, 168, 150, 0.84);
+        cursor: pointer;
+        &:hover{
+          background-color: rgba(255, 132, 104, 0.84);
+          transform: translateY(2px);
+        }
+      }
+      .buy-button{
+        width: 80%;
+        height: fit-content;
+        color: #ffffff;
+        padding: 15px;
+        font-family: $poppins-semibold-font;
+        font-weight: 700;
+        font-size: 25px;
+        margin-top: 3%;
+        background-color: rgba(0, 0, 0, 0.84);
+        cursor: pointer;
+      }
+    }
+  }
+}
+.hr{
+  width: 100%;
+  color: black;
+}
+

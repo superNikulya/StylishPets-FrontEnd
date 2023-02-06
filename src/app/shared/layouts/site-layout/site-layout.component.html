@@ -1,17 +1,46 @@
-<div class="inf-line">
-  <a class="a-name" routerLink="">
-    <p class="name">СheesyPet</p>
-  </a>
-  <div class="flexbox-block">
-    <li class="bold-active" *ngFor="let link of links">
-      <a [routerLink]="[link.url]" class="tag-a">
-        <button class="link-button"> {{link.name}}
-        </button>
-      </a>
-    </li>
+<div class="wrapper">
+  <div *ngIf="cartCondition">
+    <app-cart></app-cart>
   </div>
-  <div class="check-role" *ngIf="isAdmin">
-    <app-admin-toggle></app-admin-toggle>
+  <div class="inf-line">
+    <a class="a-name" routerLink="">
+      <p class="name">СheesyPets </p>
+    </a>
+    <div class="flexbox-block">
+      <li class="bold-active" *ngFor="let link of links">
+        <a [routerLink]="[link.url]" class="tag-a">
+          <button class="link-button"> {{link.name}}
+          </button>
+        </a>
+      </li>
+      <div class="bold-active" (click)="cart()" >
+        <mat-icon [ngStyle]="{'margin-top': '10px', 'margin-left': '10px'}">add_shopping_cart</mat-icon>
+      </div>
+    </div>
+<!--    <div class="check-role" *ngIf="isAdmin">-->
+<!--    <app-admin-toggle></app-admin-toggle>-->
+<!--  </div>-->
   </div>
 </div>
+
+<div class="social-media">
+  <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
+    <i class="bi bi-instagram"
+       [ngStyle]="{'color':'black' }">
+    </i>
+  </a>
+
+  <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
+    <i class="bi bi-facebook"
+       [ngStyle]="{ 'color':'black'}">
+    </i>
+  </a>
+  <a href="https://youtu.be/dQw4w9WgXcQ" target="_blank">
+    <i class="bi bi-telegram"
+       [ngStyle]="{ 'color':'black'}">
+    </i>
+  </a>
+</div>
 <router-outlet></router-outlet>
+
+

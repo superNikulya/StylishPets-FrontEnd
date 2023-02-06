@@ -28,9 +28,8 @@
   </form>
   <div *ngIf="condition==true">
     <app-add-product
-      [categoryId]="category._id"
-      [categoryName]="category.name"
-    ></app-add-product>
+      [categoryId]="category._id">
+    </app-add-product>
   </div>
 </div>
-
+<mat-label #message></mat-label>

@@ -2,11 +2,9 @@ $main-font: Arial,Helvetica,sans-serif;
 .wrapper{
   display: flex;
   flex-direction: row;
-  position: absolute;
-  height: auto;
-  left: 6%;
-  right: 6%;
-  top: 16%;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 8%;
   background-color: white;
   justify-content: space-between;
   flex-wrap: wrap;

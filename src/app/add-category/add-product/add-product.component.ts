@@ -2,7 +2,8 @@ import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductsService} from "../../shared/services/products.service";
-import {Category, Product} from "../../shared/services/intarfaces";
+import {Category, Product} from "../../shared/services/interfaces";
+import {SnackbarService} from "../../snackbar.service";
 
 @Component({
   selector: 'app-add-product',
@@ -12,7 +13,6 @@ import {Category, Product} from "../../shared/services/intarfaces";
 
 export class AddProductComponent implements OnInit {
   @Input ('categoryId') categoryId: string  = '';
-  @Input ('categoryName') categoryName: string  = '';
   // @ts-ignore
   @ViewChild('input') inputRef: ElementRef;
   form: FormGroup = new FormGroup({})
@@ -27,7 +27,8 @@ export class AddProductComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackbarService: SnackbarService
   ) { }
 
   ngOnInit(): void {
@@ -60,7 +61,7 @@ export class AddProductComponent implements OnInit {
     }
 
     close(){
-    alert('Category and products was added!')
+      this.snackbarService.openSnackBar('Category and products was added', 'ok')
       this.router.navigate(['admin-mode'])
     }
 
@@ -71,13 +72,12 @@ export class AddProductComponent implements OnInit {
         this.form.value.price,
         this.form.value.characteristic,
         this.categoryId,
-        this.categoryName,
         this.image)
         .subscribe(
           product => {
             this.product = product
             this.getProducts()
-            alert("a new product was added")
+            this.snackbarService.openSnackBar('Product was added')
             this.form.enable()
             this.form.reset()
             this.imagePreview = null

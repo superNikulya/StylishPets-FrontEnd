@@ -1,4 +1,4 @@
-import {Category, Message} from "./intarfaces";
+import {Category, Message} from "./interfaces";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
@@ -15,7 +15,6 @@ export class CategoriesService {
   getAll(): Observable<Category[]>{
     return this.http.get<Category[]>('/api/category')
   }
-
   create(name: string, image?: File) {
     const formData = new FormData()
     if (image) {
@@ -24,7 +23,6 @@ export class CategoriesService {
     formData.append('name', name)
     return this.http.post<Category>('/api/category/', formData)
   }
-
   update(id: string|undefined , name: string, image?: File) {
     const formData = new FormData()
     if(image){

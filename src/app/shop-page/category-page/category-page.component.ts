@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Category} from "../../shared/services/intarfaces";
+import {Category} from "../../shared/services/interfaces";
 import {CategoriesService} from "../../shared/services/categories.service";
 @Component({
   selector: 'app-category-page',
@@ -8,7 +8,6 @@ import {CategoriesService} from "../../shared/services/categories.service";
 })
 export class CategoryPageComponent implements OnInit {
 categories: Category[] = [];
-categoryId: string =''
   constructor(private categoriesService: CategoriesService) { }
   ngOnInit(): void {
     this.categoriesService.getAll().subscribe(categories=>{

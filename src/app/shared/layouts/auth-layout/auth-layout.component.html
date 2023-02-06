@@ -1,20 +1,17 @@
-<div class="inf-line">
-  <a routerLink="/">
-    <div class="name">
-      Lovely Toys
+<div class="wrapper">
+  <div class="inf-line">
+    <a class="a-name" routerLink="">
+      <p class="name">  СheesyPet </p>
+    </a>
+    <div class="flexbox-block">
+      <li class="bold-active" *ngFor="let link of links">
+        <a [routerLink]="[link.url]" class="tag-a">
+          <button class="link-button"> {{link.name}}
+          </button>
+        </a>
+      </li>
     </div>
-  </a>
-  <div class="buttons">
-    <a routerLink="/login">
-      <button routerLinkActive="active" class="log-in">
-        log-in
-      </button>
-    </a>
-    <a routerLink="/register">
-      <button class="sign-up">
-        sign-up
-      </button>
-    </a>
   </div>
 </div>
- <router-outlet></router-outlet>
+
+<router-outlet></router-outlet>
