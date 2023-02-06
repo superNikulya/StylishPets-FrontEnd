@@ -1,11 +1,11 @@
 <div class="flex-container">
-    <div class="filter-title"> Filter by</div>
+    <div class="filter-title">Filter by</div>
     <hr class="hr">
     <div class="categories-title">Categories</div>
     <div class="wrapper" *ngIf ="categories.length!==0">
        <button class="all-products" [routerLink]="['all-products']">All</button>
         <div class="get-all-categories" *ngFor ="let category of categories let i = index"
-             [routerLink]="[categories[i]._id]">
+             [routerLink]="[ category._id]">
              <button class="default-category">{{category.name}}</button>
         </div>
     </div>

@@ -1,9 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../shared/services/auth.service";
-import {Observable, Subscription} from "rxjs";
-import { ReactiveFormsModule } from '@angular/forms';
-import {ActivatedRoute, Router} from "@angular/router";
+import { Subscription} from "rxjs";
+import { Router} from "@angular/router";
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -13,8 +12,7 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   subscription: Subscription = new Subscription() //отвечает за утечку данных
   myForm: FormGroup = new FormGroup({});
   constructor(private auth: AuthService,
-              private router: Router,
-              private route: ActivatedRoute) {
+              private router: Router,) {
   }
 ngOnDestroy() {
   if (this.subscription) {

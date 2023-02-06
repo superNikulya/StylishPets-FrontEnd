@@ -2,7 +2,6 @@
   <form class="form" [formGroup]="categoryForm" (ngSubmit)="updateCategory()">
     <div class="categories-window" >
       <div class="flexbox-container">
-        <div class="snackbar" *ngIf="condition==true">Category was changed!</div>
         <label class="category-title"> You can change a name of the category </label>
         <input class="category-name-input"
                type="text"
@@ -20,7 +19,7 @@
         <button class="add-category-button"
                 type="submit"
                 [disabled]="categoryForm.invalid||categoryForm.disabled">
-            save all
+            save category
         </button>
       </div>
       <button class="delete-btn-wrap" type="button" (click)="deleteCategory() ">
@@ -66,7 +65,7 @@
                   class="img-upload-button"
                   [disabled] ="productForm.disabled"
                   type="button">
-            change image
+            add image
           </button>
         </div>
         <div class="image">
@@ -92,7 +91,6 @@
                type="text"
                formControlName="characteristic"
                placeholder="product characteristic"
-               id="characteristic"
                required>
         <span class="helper-text red-text"
               *ngIf="productForm.controls['characteristic']?.errors?.['required']
@@ -163,8 +161,7 @@
           </div>
           <input  class="product-input"
                   type="text"
-                  formControlName="price"
-                  id="price">
+                  formControlName="price">
           <span class="helper-text red-text"
                 *ngIf="productForm.controls['price']?.errors?.['required']
                 && (productForm.controls['price']?.dirty
@@ -203,3 +200,5 @@
     </div>
   </form>
 </div>
+
+<mat-label #message></mat-label>

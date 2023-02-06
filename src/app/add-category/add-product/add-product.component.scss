@@ -14,6 +14,7 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
   margin: 3px;
   padding: 10px;
   border: 1px solid black;
+
   .added-product-name{
     font-size: 20px;
     font-family:$poppins-semibold-font ;
@@ -24,7 +25,7 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
 }
 .product-window {
   display: flex;
-  width: auto;
+  width: 700px;
   height: auto;
   flex-direction: column;
   justify-content: center;

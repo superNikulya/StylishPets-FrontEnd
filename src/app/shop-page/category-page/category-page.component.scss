@@ -8,11 +8,12 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
     margin: 20px;
     height: 100%;
     .filter-title{
-        font-family: $poppins-semibold-font;
-        font-size: 30px;
-        font-weight: 700;
-        margin:10px;
-        line-height: 35px;
+      font-family: $poppins-semibold-font;
+      font-size: 25px;
+      font-weight: 800;
+      padding: 5px;
+      margin-bottom: 5px;
+      line-height: 35px;
     }
     .hr{
         width: 100%;

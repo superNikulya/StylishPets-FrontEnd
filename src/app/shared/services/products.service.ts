@@ -1,30 +1,29 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import { Message, Product} from "./intarfaces";
-import { Observable} from "rxjs";
+import { Message, Product} from "./interfaces";
+import {AsyncSubject, BehaviorSubject, Observable, Subject} from "rxjs";
 @Injectable({
     providedIn: 'root'
 })
 export class ProductsService {
+  id: string =''
+
   constructor(
     private http: HttpClient
   ) {}
-
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(`/api/product/`)
   }
-
-  getByCategoryId(categoryId: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`/api/product/${categoryId}`)
+  getByCategoryId(category: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`/api/product/category/${category}`)
   }
-  getByCategoryName(categoryName: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`/api/product/`)
+  getById(id: string): Observable<Product>{
+    return this.http.get<Product>(`/api/product/${id}`)
   }
   create(name: string,
          price: number,
          characteristic: string,
-         categoryId: string,
-         categoryName: string,
+         category: string,
          image: File) {
     const formData = new FormData()
     if(image){
@@ -32,8 +31,7 @@ export class ProductsService {
     }
     formData.append('name', name)
     formData.append('price', price.toString())
-    formData.append('categoryId', categoryId)
-    formData.append('categoryName', categoryName)
+    formData.append('category', category)
     formData.append('characteristic', characteristic)
     return this.http.post<Product>('/api/product/', formData)
   }

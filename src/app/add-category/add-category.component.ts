@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Category} from "../shared/services/intarfaces";
+import {Category} from "../shared/services/interfaces";
 import {CategoriesService} from "../shared/services/categories.service";
-
+import {SnackbarService} from "../snackbar.service";
 @Component({
     selector: 'app-add-category',
     templateUrl: './add-category.component.html',
@@ -21,11 +21,9 @@ export class AddCategoryComponent implements OnInit {
   category: Category;
   categoryId: string ='';
   condition: boolean = false;
-  categoryName: string =''
   constructor(
     private categoriesService: CategoriesService,
-    private route: ActivatedRoute,
-    private router: Router
+    private snackbarService: SnackbarService
   ) { }
 
   ngOnInit(): void {
@@ -44,11 +42,9 @@ export class AddCategoryComponent implements OnInit {
       .subscribe(
         category => {
           this.category = category
-          alert("a new category was added")
+          this.snackbarService.openSnackBar('Category was added')
           this.changeCondition()
-          // this.router.navigate([''])
           this.categoryId = this.category._id
-          this.categoryName = this.category.name
           this.myForm.disable()
         })
   }

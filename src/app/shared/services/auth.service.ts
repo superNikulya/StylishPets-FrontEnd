@@ -2,7 +2,7 @@ import {BehaviorSubject, Observable, tap} from "rxjs";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import jwtDecode from  "jwt-decode"
-import {User} from "./intarfaces";
+import {User} from "./interfaces";
 
 @Injectable({
   providedIn:'root'

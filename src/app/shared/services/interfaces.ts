@@ -19,6 +19,10 @@ export interface Product{
   imageSrc: string
   _id?: string
   user?: string
-  category: Category
+  categoryId: Category
   characteristic: string
+}
+export interface Order extends Product{
+  size: string
+  quantity: number
 }

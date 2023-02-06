@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CategoriesService} from "../shared/services/categories.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Category} from "../shared/services/intarfaces";
+import {Category} from "../shared/services/interfaces";
 
 @Component({
   selector: 'app-admin-mode-categories',
@@ -21,8 +21,8 @@ export class AdminModeCategoriesComponent implements OnInit {
   category: Category
   categoryId: string| undefined =''
   updatedCategoryId?: string | null;
+  categoryName: string =''
   // @ts-ignore
-
   constructor(
     private route: ActivatedRoute,
     private categoriesService: CategoriesService,
@@ -38,7 +38,6 @@ export class AdminModeCategoriesComponent implements OnInit {
   changeCategory(i: number) {
     this.currentCategory = i;
   }
-
   onCategoryUpdate(id?: string) {
     this.updateCategories();
     this.updatedCategoryId = id;

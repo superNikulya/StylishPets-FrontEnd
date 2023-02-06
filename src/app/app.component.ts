@@ -15,7 +15,6 @@ export class AppComponent implements OnInit{
             this.auth.setToken(potentialToken)
         }
     }
-
     cd() {
         console.log('Cd entered root')
     }

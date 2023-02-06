@@ -1,60 +1,56 @@
-<form
-  class="form"
-  [formGroup]="myForm"
-  (ngSubmit) = "onSubmit()">
-    <div class="wrapper">
-        <div class="container">
-            <header class="head-form">
-                <h2>Sign Up</h2>
-                <p> Sign up using your username and password</p>
-            </header>
-            <br>
-            <div class="field-set">
-                <input formControlName="name"
-                   class="form-input"
-                   id="input"
-                   type="text"
-                   placeholder="name:"
-                   [ngClass]="{invalid: myForm.get('name')?.invalid&&myForm.get('name')?.touched}"
-                   required>
-                <span class = "helper-text red-text" *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched">
-                    <span *ngIf="myForm.get('name')?.getError('name')"> Введите имя пользователя</span>
-                    <span *ngIf="myForm.get('name')?.getError('minlength')&& myForm.get('name')?.getError('minlength').requiredLength"> Имя не может быть меньше
-                        {{myForm.get('name')?.getError('minlength').requiredLength}} символов!</span>
-                </span>
-                <br>
-                <input formControlName="email"
-                   class="form-input"
-                   id="txt-input"
-                   type="text"
-                   placeholder="email:"
-                   [ngClass]="{invalid: myForm.get('email')?.invalid&&myForm.get('email')?.touched}"
-                   required>
-                <span class = "helper-text red-text" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
-                    <span *ngIf="myForm.get('email')?.getError('required')"> Заполните поле Email</span>
-                    <span *ngIf="myForm.get('email')?.getError('email')"> Введите корректный Email </span>
-                </span>
-                <br>
-                <input formControlName="password"
-                   class="form-input"
-                   type="password"
-                   placeholder="Password"
-                   id="pwd"
-                   name="password"
-                   [ngClass]="{invalid: myForm.get('password')?.invalid&&myForm.get('password')?.touched}"
-                   required>
-                <span class = "helper-text red-text" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">
-                    <span *ngIf="myForm.get('password')?.getError('required')"> Поле пароль не должно быть пустым </span>
-                    <span *ngIf="myForm.get('password')?.getError('minlength')&& myForm.get('password')?.getError('minlength').requiredLength"> Пароль не может быть меньше
-                        {{myForm.get('password')?.getError('minlength').requiredLength}} символов! </span>
-                </span>
-                <br>
-                <button class="log-in"
-                    type ="submit"
-                    [disabled]="myForm.invalid ||myForm.disabled">
-                    Sign Up
-                </button>
-            </div>
-        </div>
+<div class="wrapper">
+  <form class="form"
+        [formGroup]="myForm"
+        (ngSubmit) = "onSubmit()">
+    <header class="head-form">
+      <h2 class="h2">Sign Up</h2>
+      <p class="p"> Sign up using your username and password</p>
+    </header>
+    <br>
+    <div class="field-set">
+      <input formControlName="name"
+             class="form-input"
+             id="input"
+             type="text"
+             placeholder="name:"
+             [ngClass]="{invalid: myForm.get('name')?.invalid&&myForm.get('name')?.touched}"
+             required>
+      <span class = "helper-text red-text" *ngIf="myForm.get('name')?.invalid && myForm.get('name')?.touched">
+        <span *ngIf="myForm.get('name')?.getError('name')"> Введите имя пользователя</span>
+        <span *ngIf="myForm.get('name')?.getError('minlength')&& myForm.get('name')?.getError('minlength').requiredLength"> Имя не может быть меньше
+          {{myForm.get('name')?.getError('minlength').requiredLength}} символов!</span>
+      </span>
+      <br>
+      <input formControlName="email"
+             class="form-input"
+             type="text"
+             placeholder="email:"
+             [ngClass]="{invalid: myForm.get('email')?.invalid&&myForm.get('email')?.touched}"
+             required>
+      <span class = "helper-text red-text" *ngIf="myForm.get('email')?.invalid && myForm.get('email')?.touched">
+        <span *ngIf="myForm.get('email')?.getError('required')"> Заполните поле Email</span>
+        <span *ngIf="myForm.get('email')?.getError('email')"> Введите корректный Email </span>
+      </span>
+      <br>
+      <input formControlName="password"
+             class="form-input"
+             type="password"
+             placeholder="Password"
+             name="password"
+             id="pwd"
+             [ngClass]="{invalid: myForm.get('password')?.invalid&&myForm.get('password')?.touched}"
+             required>
+      <span class = "helper-text red-text" *ngIf="myForm.get('password')?.invalid && myForm.get('password')?.touched">
+        <span *ngIf="myForm.get('password')?.getError('required')"> Поле пароль не должно быть пустым </span>
+        <span *ngIf="myForm.get('password')?.getError('minlength')&& myForm.get('password')?.getError('minlength').requiredLength"> Пароль не может быть меньше
+            {{myForm.get('password')?.getError('minlength').requiredLength}} символов! </span>
+      </span>
+      <br>
+      <button class="log-in"
+        type ="submit"
+        [disabled]="myForm.invalid ||myForm.disabled">
+        Sign Up
+      </button>
     </div>
-</form>
+  </form>
+</div>

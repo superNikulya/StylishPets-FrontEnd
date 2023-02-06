@@ -4,8 +4,9 @@ import {HttpClient} from "@angular/common/http";
 @Component({
     selector: 'app-admin-mode',
     templateUrl: './admin-mode.layout.component.html',
-    styleUrls: ['./admin-mode.layout.component.scss']
+    styleUrls: ['./admin-mode.layout.component.scss'],
 })
+
 
 export class AdminModeLayoutComponent implements OnInit {
 
