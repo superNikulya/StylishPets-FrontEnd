@@ -81,7 +81,6 @@ export class AddProductComponent implements OnInit {
             this.form.enable()
             this.form.reset()
             this.imagePreview = null
-          }
-          )
+          })
   }
 }

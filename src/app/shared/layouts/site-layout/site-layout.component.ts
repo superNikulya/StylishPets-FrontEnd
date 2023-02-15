@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoriesService} from "../../services/categories.service";
 import {AuthService} from "../../services/auth.service";
 import {Category} from "../../services/interfaces";
 import {Router} from "@angular/router";
@@ -15,12 +14,12 @@ export class SiteLayoutComponent implements OnInit {
   categories: Category[] = [];
   cartCondition: boolean = false
   links = [
-      {url: '/home', name: 'Home'},
-      {url: '/shop', name: 'Shop'},
-      {url: '/about-us', name: 'About us'},
-      {url: '/contact', name: 'Contact', },
-      {url: 'auth/login', name: 'Log in', },
-      {url: 'auth/register', name: 'Sign up'},
+    {url: '/home', name: 'Home'},
+    {url: '/shop', name: 'Shop'},
+    {url: '/about-us', name: 'About us'},
+    {url: '/contact', name: 'Contact', },
+    {url: 'auth/login', name: 'Log in', },
+    {url: 'auth/register', name: 'Sign up'},
   ];
 
   constructor(

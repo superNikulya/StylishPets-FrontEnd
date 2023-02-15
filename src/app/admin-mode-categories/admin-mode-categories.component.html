@@ -2,7 +2,7 @@
   <div class="categories-flex">
     <p class="categories-title">Categories</p>
     <hr>
-    <div *ngFor="let category of categories; let i = index" class="block">
+    <div *ngFor="let category of categories| async ; let i = index" class="block">
       <div class="default-category-button"
            (click)="changeCategory(i)">
         <div class="default-category-button"
@@ -12,12 +12,13 @@
       </div>
     </div>
   </div>
-  <div *ngFor="let category of categories; let i = index">
-    <app-form *ngIf="currentCategory==i"
-                       (categoryUpdate)="onCategoryUpdate($event)"
-                       (categoryDelete)="onCategoryDelete($event)"
-                       [categoryName]="category.name"
-                       [categoryId]="category._id">
-    </app-form>
-  </div>
+  <div *ngFor="let category of categories| async ; let i = index">
+  <app-form *ngIf="currentCategory==i"
+            (categoryUpdate)="onCategoryUpdate()"
+            (categoryDelete)="onCategoryDelete()"
+            [categoryName]="category.name"
+            [categoryId]="category._id">
+  </app-form>
 </div>
+</div>
+

@@ -5,6 +5,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category, Product} from "../../shared/services/interfaces";
 import {ProductsService} from "../../shared/services/products.service";
 import {SnackbarService} from "../../snackbar.service";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -31,8 +32,8 @@ export class FormComponent implements OnInit {
   @Output() categoryDelete = new EventEmitter<boolean>();
   categoryForm: FormGroup = new FormGroup({});
   productForm: FormGroup = new FormGroup({});
-  categories: Category[] = [];
-  products: Product[] = [];
+  categories?: Observable<Category[]>;
+  products?: Observable<Product[]>;
   // @ts-ignore
   image: File;
   imagePreview: any = ''
@@ -41,31 +42,31 @@ export class FormComponent implements OnInit {
   // @ts-ignore
   product: Product;
   // @ts-ignore
-  newProduct: Product;
   condition: boolean = false;
   currentProduct: number | null = null;
   productId?: string = "";
   productNew: boolean = false;
-  message: string| null =''
+  message: string| null ='';
+
   ngOnInit(): void {
+
     this.categoryForm = new FormGroup({
       "name": new FormControl(this.categoryName, [Validators.required]),
     });
+
     this.productForm = new FormGroup({
       "name": new FormControl(null, [Validators.required]),
       "price": new FormControl(null, [Validators.required]),
       "characteristic": new FormControl(null, [Validators.required]),
     });
-    this.categoriesService.getAll().subscribe(categories =>
-      this.categories = categories);
+
+    this.categories = this.categoriesService.getAll();
 
     this.getProductByCategoryId()
   }
 
-
   getProductByCategoryId() {
-    this.productsService.getByCategoryId(this.categoryId)
-      .subscribe(products => this.products = products);
+    this.products= this.productsService.getByCategoryId(this.categoryId)
   }
 
   deleteCategory() {
@@ -99,11 +100,10 @@ export class FormComponent implements OnInit {
     this.categoriesService.update(this.categoryId, this.categoryForm.value.name)
       .subscribe(
         category => {
-          this.snackbarService.openSnackBar(`"${category.name} was updated"`),
+          this.snackbarService.openSnackBar(`"${category.name} was updated"`)
           this.categoryUpdate.emit(category._id)
-        }
-      );
-    this.categoryForm.enable()
+          this.categoryForm.enable()
+        });
   }
 
   addNewProduct() {
@@ -136,14 +136,18 @@ export class FormComponent implements OnInit {
       this.productForm.value.price,
       this.productForm.value.characteristic,
       this.categoryId,
-      this.image)
-    this.productForm.enable()
-    this.productForm.reset()
-    this.snackbarService.openSnackBar('a new product was created')
-    this.imagePreview = null
-    this.productNew = false
-    this.getProductByCategoryId()
+      this.image).subscribe(
+        product => {
+          this.productForm.enable()
+          this.productForm.reset()
+          this.snackbarService.openSnackBar('a new product was created')
+          this.imagePreview = null
+          this.productNew = false
+          this.getProductByCategoryId()
+        }
+    )
   }
+
   updateProduct(e: any) {
     this.productsService.update(
       this.productId,
@@ -154,9 +158,9 @@ export class FormComponent implements OnInit {
     ).subscribe(
       product => {
         this.snackbarService.openSnackBar(`"${product.name}" was updated`)
+        this.currentProduct = null
+        this.getProductByCategoryId()
       })
-    this.currentProduct = null
-    this.getProductByCategoryId()
   }
   deleteProduct() {
     const choice = window.confirm('Do you want to delete this product?')
@@ -164,8 +168,7 @@ export class FormComponent implements OnInit {
       this.productsService.delete(
         this.productId
       ).subscribe({
-        next: (message) =>
-          this.snackbarService.openSnackBar(`product was deleted`),
+        next: (message) => this.snackbarService.openSnackBar(`product was deleted`),
         error: (err) => console.log(err),
         complete: () => this.getProductByCategoryId()
       })

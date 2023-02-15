@@ -1,7 +1,7 @@
 import {ActivatedRoute, Params} from "@angular/router";
 import {Component, OnInit} from '@angular/core';
 import {ProductsService} from "../../shared/services/products.service";
-import {BehaviorSubject, map, of, Subject, switchMap} from "rxjs";
+import { Observable, of, switchMap} from "rxjs";
 import {Product} from "../../shared/services/interfaces";
 
 @Component({
@@ -10,13 +10,14 @@ import {Product} from "../../shared/services/interfaces";
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  products: Product[] = [];
+  products?: Observable<Product[] | null>;
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute
     ) { }
+
   ngOnInit(): void {
-    this.route.params.pipe(
+    this.products = this.route.params.pipe(
       switchMap((params: Params) => {
         if (params['id']==='all-products') {
           return this.productsService.getAll()
@@ -25,9 +26,16 @@ export class DashboardComponent implements OnInit {
         }
         return of(null)
       })
-    ).subscribe({
-      next: (products) => this.products = products!,
-      error: (e) => console.log(e)
-    })
+    )
+    // this.products = this.route.params.pipe(
+    //   map((params: Params) => {
+    //     if (params['id']==='all-products') {
+    //       return this.productsService.getAll()
+    //     } else if (params['id']) {
+    //       return this.productsService.getByCategoryId(params['id']);
+    //     }
+    //     return of(null)
+    //   }), exhaustAll()
+    // )
   }
 }

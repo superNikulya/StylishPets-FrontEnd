@@ -1,5 +1,5 @@
 <div class="dashboard">
-    <div *ngFor="let product of products let i = index" [routerLink]="['/product', product._id]">
+    <div *ngFor="let product of products| async let i = index" [routerLink]="['/product', product._id]">
         <div class ="default-product" >
             <img class="product-image"
                  src="{{product.imageSrc}}">
