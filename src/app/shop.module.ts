@@ -4,7 +4,6 @@ import {CategoryPageComponent} from "./shop-page/category-page/category-page.com
 import {ShopPageComponent} from "./shop-page/shop-page.component";
 import {ProductViewComponent} from "./shop-page/product-view/product-view.component";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-import {AppRoutingModule} from "../routing-modules/app-routing.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";

@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {of, switchMap} from "rxjs";
+import {BehaviorSubject, of, Subscription, switchMap} from "rxjs";
 import {ActivatedRoute, Params} from "@angular/router";
 import {ProductsService} from "../../shared/services/products.service";
 import { Order, Product} from "../../shared/services/interfaces";
@@ -13,24 +13,20 @@ import {SnackbarService} from "../../snackbar.service";
 })
 
 export class ProductViewComponent implements OnInit {
-  //@ts-ignore
-  @ViewChild('quantity') quantity:ElementRef;
+  quantity: number = 1;
+  productSize: string;
   product?: Product;
-  photo: string ='';
-  name: string ='';
-  characteristic: string ='';
-  image: string = '';
-  price: number| null = null;
-  productSize: string ='';
-  //@ts-ignore
-  order: Order
+  price: number | null = null;
   sizes: string[] = ['25-35 cm - XS', '35-45 cm - S', '45-55 cm - M', '55-65 cm - L']
+
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute,
     private orderService: OrderService,
     private snackbarService: SnackbarService
-  ) { }
+  ) {
+    this.productSize = this.sizes[0];
+  }
   ngOnInit(): void {
     this.getProduct()
   }
@@ -46,24 +42,21 @@ export class ProductViewComponent implements OnInit {
     ).subscribe({
       next: (product) => {
         this.product = product!
-        this.characteristic = product!.characteristic
-        this.photo = product!.imageSrc
-        this.price = product!.price
-        this.name = product!.name
       },
       error: (e) => console.log(e)
     })
   }
 
   pushToCart(){
-    let quantity: number = this.quantity.nativeElement.value
-    this.order ={
+    let quantity: number = this.quantity;
+    const order ={
       ...this.product!,
       size: this.productSize,
       quantity: quantity
     }
-    if(this.order)
-    this.orderService.orders.push(this.order)
-    this.snackbarService.openSnackBar('added to your cart!')
+    if(order) {
+      this.orderService.addOrder(order)
+      this.snackbarService.openSnackBar('added to your cart!')
+    }
 }
 }

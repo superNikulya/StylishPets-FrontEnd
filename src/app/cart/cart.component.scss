@@ -1,19 +1,28 @@
-
+$coffee-color: #ffd5fa;
+$main-font: Arial,Helvetica,sans-serif;
+$poppins-extralight-font: poppins-extralight,poppins,sans-serif;
+$poppins-semibold-font: poppins-semibold,poppins,sans-serif;
 .wrapper{
-  background-color: rgba(231, 231, 231, 0.49);
-  width: 100%;
+  position: fixed;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 2;
+  z-index: 998;
   height: 100%;
-  position: absolute;
+  width: 100%;
   .cart-window {
-    position: fixed;
-    right:0%;
+    position: absolute;
+    z-index: 999;
+    background-attachment: fixed;
+    right: 0%;
     margin-right: 6%;
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-    width: 300px;
-    height: 400px;
+    width: 35%;
+    height: 70%;
     align-content: center;
+    overflow-y: scroll;
     .cart-title {
       font-size: 30px;
       text-align: center;
@@ -22,11 +31,55 @@
       color: white;
       padding: 30px;
       width: 100%;
+      font-family: $poppins-semibold-font;
     }
-    .cart-info{
-      padding: 30px;
-      font-size: 18px;
+    .empty-block{
+      font-size: 30px;
       text-align: center;
+      height: fit-content;
+      color: black;
+      padding: 30px;
+      width: 100%;
+      font-family: $poppins-semibold-font;
+    }
+    .order-flex{
+      display: flex;
+      flex-direction: column;
+      .default-order{
+        display: flex;
+        flex-direction: row;
+        border: 1px solid lightgrey;
+        padding: 5px;
+        margin: 5px;
+        .img{
+          width: 25%;
+        }
+        .inner-flex{
+          display: flex;
+          flex-direction: column;
+          margin-left: 20px;
+          .name{
+            font-family: $poppins-semibold-font;
+            font-size: 20px;
+            margin: 5px;
+          }
+          .price{
+            font-family: $poppins-semibold-font;
+            font-size: 20px;
+            margin: 5px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    .buy-button{
+      border: 1px solid lightgrey;
+      padding: 5px;
+      margin: 5px;
+      width: 30%;
+      background-color: black;
+      color: white;
+      justify-content: end;
     }
   }
 }

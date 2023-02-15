@@ -4,9 +4,8 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
 .wrapper {
   display: flex;
   flex-direction: row;
-  height: auto;
   width: auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   background-color: white;
   .categories-flex {
     margin: 15px;
@@ -15,7 +14,7 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 150px;
+    width: 10%;
     height: auto;
     background-color: white;
     .categories-title{
@@ -30,7 +29,6 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
     }
     .block {
       border-right: 1px solid black;
-      width: 100%;
       .default-category-button {
           background-color: #ffffff;
           font-family: $poppins-semibold-font;

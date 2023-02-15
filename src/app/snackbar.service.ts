@@ -12,8 +12,7 @@ export class SnackbarService {
   openSnackBar(message: string, action?: string) {
     this._snackBar.open(message, action)
     if (action) {
-    }
-    else{
+    } else {
       setTimeout(() => this._snackBar.dismiss(), 2000)
     }
   }

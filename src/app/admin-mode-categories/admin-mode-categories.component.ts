@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CategoriesService} from "../shared/services/categories.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category} from "../shared/services/interfaces";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-admin-mode-categories',
@@ -13,16 +14,13 @@ export class AdminModeCategoriesComponent implements OnInit {
   // @ts-ignore
   @ViewChild('input') inputRef: ElementRef;
   myForm: FormGroup = new FormGroup({})
-  categories: Category[] = []
+  categories?: Observable<Category[]>;
   currentCategory: number | null = null;
   // @ts-ignore
   image: File
   // @ts-ignore
-  category: Category
-  categoryId: string| undefined =''
+  category: Category;
   updatedCategoryId?: string | null;
-  categoryName: string =''
-  // @ts-ignore
   constructor(
     private route: ActivatedRoute,
     private categoriesService: CategoriesService,
@@ -47,12 +45,10 @@ export class AdminModeCategoriesComponent implements OnInit {
   }
 
   updateCategories() {
-    this.categoriesService.getAll().subscribe(categories => {
-      this.categories = categories
-    });
-  }
+      this.categories  = this.categoriesService.getAll()
+    }
 
-  onCategoryDelete(event: boolean){
+  onCategoryDelete(){
     this.updateCategories()
   }
 }

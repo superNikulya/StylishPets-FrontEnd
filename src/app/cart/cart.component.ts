@@ -8,15 +8,25 @@ import {Order} from "../shared/services/interfaces";
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-orders: Order[] =[]
+  orders: Order[] =[]
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
   ) { }
+
   ngOnInit(): void {
-    this.orderService.Orders.subscribe(orders=>{
-      this.orders=orders
-      }
-    )
+    this.getItems()
+  }
+  changeQuantity(condition: 'plus'| 'minus', order: Order){
+    if(condition === "minus"){
+      order.quantity--
+    }else{
+      (condition === "plus")
+      order.quantity++
+    }
+  }
+  getItems(){
+    this.orders = this.orderService.orders;
+    console.log(this.orders)
   }
 
 }

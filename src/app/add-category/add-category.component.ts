@@ -1,6 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
 import {Category} from "../shared/services/interfaces";
 import {CategoriesService} from "../shared/services/categories.service";
 import {SnackbarService} from "../snackbar.service";
@@ -42,10 +41,10 @@ export class AddCategoryComponent implements OnInit {
       .subscribe(
         category => {
           this.category = category
-          this.snackbarService.openSnackBar('Category was added')
-          this.changeCondition()
-          this.categoryId = this.category._id
           this.myForm.disable()
+          this.categoryId = this.category._id
+          this.changeCondition()
+          this.snackbarService.openSnackBar('Category was added')
         })
   }
 }
