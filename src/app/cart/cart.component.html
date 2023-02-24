@@ -1,22 +1,9 @@
 <div class="wrapper">
-  <div class="cart-window">
-    <p class="cart-title">Cart</p>
-    <div class="empty-block" *ngIf="orders.length<=0"> Cart is empty</div>
-      <div class="order-flex" *ngFor="let order of orders" >
-        <div class="default-order">
-          <img class="img" src="{{order.imageSrc}}"/>
-          <div class="inner-flex">
-            <p class="name" >{{order.name}}</p>
-            <p class="price">${{order.price}}</p>
-            <p class="text">quantity: {{order.quantity}}</p>
-            <div ng-repeat="item in PC.Items">
-              <button (click)="changeQuantity('minus', order)" class="btn btn-default">-</button>
-              <button class="btn btn-default" (click)="changeQuantity('plus', order)">+</button>
-            </div>
-            <p class="text">size: {{order.size}}</p>
-          </div>
-        </div>
-      </div>
-    <button class="buy-button" *ngIf="orders.length>0"> Buy </button>
+<div class="cart-window">
+  <div class="cart-title">Cart</div>
+<!--  <div class="cart-info"> cart is empty</div>-->
+  <div *ngFor="let order of orders">
+  <div>{{order.name}}</div>
   </div>
+</div>
 </div>

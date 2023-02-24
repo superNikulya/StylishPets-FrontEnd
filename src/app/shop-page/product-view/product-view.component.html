@@ -2,11 +2,11 @@
   <div class="content-holder">
 
     <div class="left-flex">
-      <img class="photo" src="{{product?.imageSrc}}">
-      <div class="characteristic">{{product?.characteristic}}</div>
+      <img class="photo" src="{{photo}}">
+      <div class="characteristic">{{characteristic}}</div>
     </div>
     <div class="right-flex">
-      <div class="name">{{product?.name}}</div>
+      <div class="name">{{name}}</div>
       <div class="price">${{product?.price}}</div>
       <br>
       <hr class="hr">
@@ -18,7 +18,7 @@
           </mat-option>
         </mat-select>
       <label class="select-title">What about quantity?</label>
-      <input type="number" min="1" [(ngModel)]="quantity"/>
+      <input type="number" min="1" [value]="1" #quantity/>
       <div class="add-to-cart" (click)="pushToCart()"> Add to cart  🤍</div>
         <mat-label #message></mat-label>
       <div class="buy-button"> Buy now </div>
