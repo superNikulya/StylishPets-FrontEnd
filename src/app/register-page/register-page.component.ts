@@ -9,29 +9,29 @@ import { Router} from "@angular/router";
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent implements OnInit, OnDestroy {
-  subscription: Subscription = new Subscription() //отвечает за утечку данных
+  subscription: Subscription = new Subscription(); //отвечает за утечку данных
   myForm: FormGroup = new FormGroup({});
   constructor(private auth: AuthService,
               private router: Router,) {
   }
-ngOnDestroy() {
-  if (this.subscription) {
-    this.subscription.unsubscribe()
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
-}
   onSubmit(){
-    this.myForm.disable()
+    this.myForm.disable();
     this.subscription = this.auth.register(this.myForm.value).subscribe({
       next: (v) => {
         this.router.navigate(['/login'], {
           queryParams: {
             registered: true
           }
-        })
+        });
       },
       error: (e) => {
-        console.warn(e, "does not work")
-        this.myForm.enable()
+        console.warn(e, "does not work");
+        this.myForm.enable();
       },
       complete: () => console.info('complete')
     });
@@ -41,6 +41,6 @@ ngOnDestroy() {
       "name": new FormControl(null, [Validators.required, Validators.minLength(2)]),
       "password": new FormControl(null, [Validators.required, Validators.minLength(6)]),
       "email": new FormControl(null, [Validators.required, Validators.email])
-    })
+    });
   }
 }

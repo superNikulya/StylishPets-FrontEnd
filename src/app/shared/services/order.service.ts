@@ -11,7 +11,7 @@ export class OrderService {
   constructor(
     private http: HttpClient
   ) {}
-  orders: Order[] =[]
-  Orders = new BehaviorSubject<Order[]>(this.orders)
+  orders: Order[] =[];
+  Orders = new BehaviorSubject<Order[]>(this.orders);
 
 }

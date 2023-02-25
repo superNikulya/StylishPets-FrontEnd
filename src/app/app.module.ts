@@ -28,20 +28,20 @@ import {MatSelectModule} from "@angular/material/select";
     ContactComponent,
     CartComponent,
   ],
-    imports: [
-      MatSnackBarModule,
-      BrowserModule,
-      AppRoutingModule,
-      ReactiveFormsModule,
-      FormsModule,
-      BrowserAnimationsModule,
-      HttpClientModule,
-      MatSlideToggleModule,
-      MatButtonToggleModule,
-      MatIconModule,
-      MatFormFieldModule,
-      MatSelectModule,
-    ],
+  imports: [
+    MatSnackBarModule,
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+  ],
   providers: [
     AuthService,
     {
@@ -49,7 +49,7 @@ import {MatSelectModule} from "@angular/material/select";
       multi: true,
       useClass: TokenInterceptor
     }
-],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

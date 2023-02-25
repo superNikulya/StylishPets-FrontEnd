@@ -8,15 +8,15 @@ import {Order} from "../shared/services/interfaces";
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-orders: Order[] =[]
+  orders: Order[] =[];
   constructor(
     private orderService: OrderService
   ) { }
   ngOnInit(): void {
     this.orderService.Orders.subscribe(orders=>{
-      this.orders = orders
-      }
-    )
+      this.orders = orders;
+    }
+    );
   }
 
 }

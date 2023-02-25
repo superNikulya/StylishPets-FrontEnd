@@ -1,10 +1,11 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {CategoriesService} from "../../shared/services/categories.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category, Product} from "../../shared/services/interfaces";
 import {ProductsService} from "../../shared/services/products.service";
 import {SnackbarService} from "../../snackbar.service";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -25,28 +26,28 @@ export class FormComponent implements OnInit {
   @ViewChild('input') inputRef: ElementRef;
   // @ts-ignore
   @ViewChild('productId') nameParagraph: ElementRef;
-  @Input('categoryId') categoryId: string = '';
-  @Input('categoryName') categoryName: string = '';
+  @Input() categoryId = '';
+  @Input() categoryName = '';
   @Output() categoryUpdate = new EventEmitter<string | undefined>();
   @Output() categoryDelete = new EventEmitter<boolean>();
   categoryForm: FormGroup = new FormGroup({});
   productForm: FormGroup = new FormGroup({});
   categories: Category[] = [];
-  products: Product[] = [];
+  products!: Observable<Product[]>;
   // @ts-ignore
   image: File;
-  imagePreview: any = ''
+  imagePreview: any = '';
   // @ts-ignore
   category: Category;
   // @ts-ignore
   product: Product;
   // @ts-ignore
   newProduct: Product;
-  condition: boolean = false;
+  condition = false;
   currentProduct: number | null = null;
   productId?: string = "";
-  productNew: boolean = false;
-  message: string| null =''
+  productNew = false;
+  message: string| null ='';
   ngOnInit(): void {
     this.categoryForm = new FormGroup({
       "name": new FormControl(this.categoryName, [Validators.required]),
@@ -59,17 +60,16 @@ export class FormComponent implements OnInit {
     this.categoriesService.getAll().subscribe(categories =>
       this.categories = categories);
 
-    this.getProductByCategoryId()
+    this.getProductByCategoryId();
   }
 
 
   getProductByCategoryId() {
-    this.productsService.getByCategoryId(this.categoryId)
-      .subscribe(products => this.products = products);
+    this.products =  this.productsService.getByCategoryId(this.categoryId);
   }
 
   deleteCategory() {
-    const choice = window.confirm(`Do you want to delete"${this.categoryName}"?`)
+    const choice = window.confirm(`Do you want to delete"${this.categoryName}"?`);
     if (choice) {
       this.categoriesService.delete(this.categoryId).subscribe(
         {
@@ -77,22 +77,22 @@ export class FormComponent implements OnInit {
             this.snackbarService.openSnackBar(`"${this.categoryName} was deleted"`),
           error: (err) => console.log(err),
           complete: () => this.categoryDelete.emit(true)
-        })
+        });
     }
   }
 
   onFileUpload(event: any) {
-    const file = event.target.files[0]
-    this.image = file
-    const reader = new FileReader()
+    const file = event.target.files[0];
+    this.image = file;
+    const reader = new FileReader();
     reader.onload = () => {
-      this.imagePreview = reader.result
-    }
-    reader.readAsDataURL(file)
+      this.imagePreview = reader.result;
+    };
+    reader.readAsDataURL(file);
   }
 
   saveImgClick() {
-    this.inputRef.nativeElement.click()
+    this.inputRef.nativeElement.click();
   }
 
   updateCategory() {
@@ -100,49 +100,49 @@ export class FormComponent implements OnInit {
       .subscribe(
         category => {
           this.snackbarService.openSnackBar(`"${category.name} was updated"`),
-          this.categoryUpdate.emit(category._id)
+          this.categoryUpdate.emit(category._id);
         }
       );
-    this.categoryForm.enable()
+    this.categoryForm.enable();
   }
 
   addNewProduct() {
-    this.productNew = true
-    this.currentProduct = null
+    this.productNew = true;
+    this.currentProduct = null;
     this.productForm.setValue({
       name: null,
       price: null,
       characteristic: null,
-    })
+    });
   }
   closeNewProduct() {
-  this.productNew = false
-}
+    this.productNew = false;
+  }
   changeProduct(i: number, product: Product) {
     this.productNew = false;
     this.currentProduct = i;
-    this.productId = product._id
+    this.productId = product._id;
     this.productForm.setValue({
       name: product.name,
       price: product.price,
       characteristic: product.characteristic
-    })
+    });
   }
 
   addProduct(e: any){
-    this.productForm.disable()
+    this.productForm.disable();
     this.productsService.create(
       this.productForm.value.name,
       this.productForm.value.price,
       this.productForm.value.characteristic,
       this.categoryId,
-      this.image)
-    this.productForm.enable()
-    this.productForm.reset()
-    this.snackbarService.openSnackBar('a new product was created')
-    this.imagePreview = null
-    this.productNew = false
-    this.getProductByCategoryId()
+      this.image);
+    this.productForm.enable();
+    this.productForm.reset();
+    this.snackbarService.openSnackBar('a new product was created');
+    this.imagePreview = null;
+    this.productNew = false;
+    this.getProductByCategoryId();
   }
   updateProduct(e: any) {
     this.productsService.update(
@@ -153,13 +153,13 @@ export class FormComponent implements OnInit {
       this.image
     ).subscribe(
       product => {
-        this.snackbarService.openSnackBar(`"${product.name}" was updated`)
-      })
-    this.currentProduct = null
-    this.getProductByCategoryId()
+        this.snackbarService.openSnackBar(`"${product.name}" was updated`);
+      });
+    this.currentProduct = null;
+    this.getProductByCategoryId();
   }
   deleteProduct() {
-    const choice = window.confirm('Do you want to delete this product?')
+    const choice = window.confirm('Do you want to delete this product?');
     if (choice) {
       this.productsService.delete(
         this.productId
@@ -168,7 +168,7 @@ export class FormComponent implements OnInit {
           this.snackbarService.openSnackBar(`product was deleted`),
         error: (err) => console.log(err),
         complete: () => this.getProductByCategoryId()
-      })
+      });
     }
   }
 }

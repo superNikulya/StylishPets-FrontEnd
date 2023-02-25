@@ -15,6 +15,17 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "@typescript-eslint/ban-ts-comment": [
+          0
+        ],
+        "semi": [
+          "error",
+          "always"
+        ],
+        "indent": [
+          "error",
+          2
+        ],
         "@angular-eslint/directive-selector": [
           "error",
           {

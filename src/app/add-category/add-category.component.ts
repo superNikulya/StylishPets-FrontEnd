@@ -1,13 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
 import {Category} from "../shared/services/interfaces";
 import {CategoriesService} from "../shared/services/categories.service";
 import {SnackbarService} from "../snackbar.service";
 @Component({
-    selector: 'app-add-category',
-    templateUrl: './add-category.component.html',
-    styleUrls: ['./add-category.component.scss']
+  selector: 'app-add-category',
+  templateUrl: './add-category.component.html',
+  styleUrls: ['./add-category.component.scss']
 })
 
 export class AddCategoryComponent implements OnInit {
@@ -19,8 +18,8 @@ export class AddCategoryComponent implements OnInit {
   categories: Category[] =[];
   // @ts-ignore
   category: Category;
-  categoryId: string ='';
-  condition: boolean = false;
+  categoryId ='';
+  condition = false;
   constructor(
     private categoriesService: CategoriesService,
     private snackbarService: SnackbarService
@@ -29,23 +28,23 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.myForm = new FormGroup({
       "name": new FormControl(null, [Validators.required]),
-    })
+    });
   }
 
   changeCondition(){
-    this.condition= true
+    this.condition= true;
   }
 
   onSubmit(){
-    this.myForm.disable()
+    this.myForm.disable();
     this.categoriesService.create(this.myForm.value.name, this.image)
       .subscribe(
         category => {
-          this.category = category
-          this.snackbarService.openSnackBar('Category was added')
-          this.changeCondition()
-          this.categoryId = this.category._id
-          this.myForm.disable()
-        })
+          this.category = category;
+          this.snackbarService.openSnackBar('Category was added');
+          this.changeCondition();
+          this.categoryId = this.category._id;
+          this.myForm.disable();
+        });
   }
 }

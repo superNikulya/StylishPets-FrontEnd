@@ -22,6 +22,10 @@ export interface Product{
   categoryId: Category
   characteristic: string
 }
+
+export type Products = Product[];
+
+
 export interface Order extends Product{
   size: string
   quantity: number

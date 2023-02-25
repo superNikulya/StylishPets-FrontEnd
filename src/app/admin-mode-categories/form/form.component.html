@@ -118,7 +118,7 @@
            (click)="addNewProduct()">
         Add a new product
       </div>
-    <div *ngFor="let product of products| async let i = index ">
+    <div *ngFor="let product of products | async; let i = index ">
       <div class="buttons-wrapper">
         <button (click)="changeProduct( i , product)" class="product-button">
           {{product.name}}

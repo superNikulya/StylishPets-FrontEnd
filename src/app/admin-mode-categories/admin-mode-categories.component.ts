@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CategoriesService} from "../shared/services/categories.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category} from "../shared/services/interfaces";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-admin-mode-categories',
@@ -12,21 +13,21 @@ import {Category} from "../shared/services/interfaces";
 export class AdminModeCategoriesComponent implements OnInit {
   // @ts-ignore
   @ViewChild('input') inputRef: ElementRef;
-  myForm: FormGroup = new FormGroup({})
-  categories: Category[] = []
+  myForm: FormGroup = new FormGroup({});
+  categories!: Observable<Category[]>;
   currentCategory: number | null = null;
   // @ts-ignore
-  image: File
+  image: File;
   // @ts-ignore
-  category: Category
-  categoryId: string| undefined =''
+  category: Category;
+  categoryId: string| undefined ='';
   updatedCategoryId?: string | null;
-  categoryName: string =''
+  categoryName ='';
   // @ts-ignore
   constructor(
     private route: ActivatedRoute,
     private categoriesService: CategoriesService,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
@@ -43,16 +44,14 @@ export class AdminModeCategoriesComponent implements OnInit {
     this.updatedCategoryId = id;
     setTimeout(() => {
       this.updatedCategoryId = null;
-    }, 1000)
+    }, 1000);
   }
 
   updateCategories() {
-    this.categoriesService.getAll().subscribe(categories => {
-      this.categories = categories
-    });
+    this.categories = this.categoriesService.getAll();
   }
 
-  onCategoryDelete(event: boolean){
-    this.updateCategories()
+  onCategoryDelete(){
+    this.updateCategories();
   }
 }
