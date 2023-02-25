@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductsService} from "../../shared/services/products.service";
 import {Category, Product} from "../../shared/services/interfaces";
-import {SnackbarService} from "../../snackbar.service";
+import {SnackbarService} from "../../shared/services/snackbar.service";
 
 @Component({
   selector: 'app-add-product',

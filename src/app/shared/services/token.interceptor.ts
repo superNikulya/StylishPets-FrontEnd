@@ -13,8 +13,8 @@ export class TokenInterceptor implements HttpInterceptor {
         setHeaders: {
           Authorization: this.auth.getToken()
         }
-      })
+      });
     }
-    return next.handle(req)
+    return next.handle(req);
   }
 }

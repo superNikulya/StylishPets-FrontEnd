@@ -4,7 +4,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 import {ProductsService} from "../../shared/services/products.service";
 import { Order, Product} from "../../shared/services/interfaces";
 import {OrderService} from "../../shared/services/order.service";
-import {SnackbarService} from "../../snackbar.service";
+import {SnackbarService} from "../../shared/services/snackbar.service";
 
 @Component({
   selector: 'app-product-view',

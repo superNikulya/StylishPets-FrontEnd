@@ -4,7 +4,7 @@ import {CategoriesService} from "../../shared/services/categories.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category, Product} from "../../shared/services/interfaces";
 import {ProductsService} from "../../shared/services/products.service";
-import {SnackbarService} from "../../snackbar.service";
+import {SnackbarService} from "../../shared/services/snackbar.service";
 import {Observable} from "rxjs";
 
 

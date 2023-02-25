@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Category} from "../shared/services/interfaces";
 import {CategoriesService} from "../shared/services/categories.service";
-import {SnackbarService} from "../snackbar.service";
+import {SnackbarService} from "../shared/services/snackbar.service";
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',

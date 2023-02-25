@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoriesService} from "../../services/categories.service";
 import {AuthService} from "../../services/auth.service";
 import {Category} from "../../services/interfaces";
 import {Router} from "@angular/router";
@@ -10,17 +9,17 @@ import {Router} from "@angular/router";
   styleUrls: ['./site-layout.component.scss'],
 })
 export class SiteLayoutComponent implements OnInit {
-  isAdmin: boolean = false;
-  condition: boolean = false;
+  isAdmin = false;
+  condition = false;
   categories: Category[] = [];
-  cartCondition: boolean = false
+  cartCondition = false;
   links = [
-      {url: '/home', name: 'Home'},
-      {url: '/shop', name: 'Shop'},
-      {url: '/about-us', name: 'About us'},
-      {url: '/contact', name: 'Contact', },
-      {url: 'auth/login', name: 'Log in', },
-      {url: 'auth/register', name: 'Sign up'},
+    {url: '/home', name: 'Home'},
+    {url: '/shop', name: 'Shop'},
+    {url: '/about-us', name: 'About us'},
+    {url: '/contact', name: 'Contact', },
+    {url: 'auth/login', name: 'Log in', },
+    {url: 'auth/register', name: 'Sign up'},
   ];
 
   constructor(
@@ -29,12 +28,12 @@ export class SiteLayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.auth.isAdmin.subscribe(isAdmin => this.isAdmin = isAdmin);
+    this.auth.isAdmin.subscribe(isAdmin => this.isAdmin = isAdmin);
   }
   cart(){
-    this.cartCondition = !this.cartCondition
+    this.cartCondition = !this.cartCondition;
   }
   toggle() {
-      this.condition = !this.condition;
+    this.condition = !this.condition;
   }
 }

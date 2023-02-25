@@ -10,8 +10,6 @@ import {User} from "./interfaces";
 
 export class AuthService {
   private token: string | null = null;
-  role?: string = '';
-  decoded: any = {};
   state: {email: string, role: string} | null = null;
   isAdmin = new BehaviorSubject(false);
 
@@ -36,34 +34,31 @@ export class AuthService {
   componentDidMount() {
     const token = localStorage.getItem('auth-token');
     if (token) {
-      this.decoded = jwtDecode(token);
+      const decoded: any = jwtDecode(token);
       this.state = {
-        email: this.decoded.email,
-        role: this.decoded.role,
+        email: decoded.email,
+        role: decoded.role,
       };
     }
   }
 
-  checkRole(): boolean{
+  checkRole(): boolean {
     this.componentDidMount();
     if(this.state?.role == 'admin'){
       return!!this.token;
     }
-    else{
-      return false;
-    }
+    return false;
   }
 
   setToken(token:string|null){
     this.token = token;
   }
 
-  getToken():any{
+  getToken(): any{
     if (this.token === null){
       console.log('no access');
-    } else {
-      return this.token;
     }
+    return this.token;
   }
 
   logout() {

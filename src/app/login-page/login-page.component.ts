@@ -5,6 +5,9 @@ import {Subscription} from "rxjs";
 import {AuthService} from "../shared/services/auth.service";
 import {Router} from "@angular/router";
 
+//kevinminion@gmail.com ( login for admin)
+//kevinthekevin (password for admin)
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',

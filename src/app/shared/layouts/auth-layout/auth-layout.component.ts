@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-auth-layout',
@@ -7,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthLayoutComponent {
   links = [
-    {url: 'login', name: 'Log in',},
+    {url: 'login', name: 'Log in', },
     {url: 'register', name: 'Sign up'},
   ];
 }
-
-

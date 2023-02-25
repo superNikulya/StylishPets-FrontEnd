@@ -9,7 +9,7 @@ import { Router} from "@angular/router";
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent implements OnInit, OnDestroy {
-  subscription: Subscription = new Subscription(); //отвечает за утечку данных
+  subscription: Subscription = new Subscription();
   myForm: FormGroup = new FormGroup({});
   constructor(private auth: AuthService,
               private router: Router,) {

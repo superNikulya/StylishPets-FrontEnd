@@ -10,11 +10,14 @@ import { Products} from "../../shared/services/interfaces";
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+
   products!:  Observable<Products>;
+
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute
   ) { }
+
   ngOnInit(): void {
     this.products = this.route.params.pipe(
       switchMap((params: Params) => {
