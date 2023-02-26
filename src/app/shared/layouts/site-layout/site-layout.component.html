@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div *ngIf="cartCondition">
+  <div *ngIf="this.orderService.cartCondition">
     <app-cart></app-cart>
   </div>
   <div class="inf-line">
@@ -17,9 +17,6 @@
         <mat-icon [ngStyle]="{'margin-top': '10px', 'margin-left': '10px'}">add_shopping_cart</mat-icon>
       </div>
     </div>
-<!--    <div class="check-role" *ngIf="isAdmin">-->
-<!--    <app-admin-toggle></app-admin-toggle>-->
-<!--  </div>-->
   </div>
 </div>
 

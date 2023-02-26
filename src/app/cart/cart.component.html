@@ -1,17 +1,23 @@
 <div class="wrapper">
 <div class="cart-window">
   <div class="cart-title">Cart</div>
-  <div class="empty-block">there are no products</div>
+  <div class="empty-block" *ngIf="orders.length<1">there are no products</div>
   <div class="order-flex" *ngFor="let order of orders">
     <div class="default-order">
       <img src="{{order.imageSrc}}" class="img">
       <div class="inner-flex">
         <div class="name">{{order.name}}</div>
         <div class="price">{{order.price}}$</div>
-        <div class="quantity">quantity: {{order.quantity}}</div>
-    </div>
+        <div class="input-group" [formGroup]="quantityForm" >
+          <button type="button" class="btn btn-danger btn-number" style="background-color: #f6e5dc; color: black" (click)="quantity('-', order)">
+            -</button>
+          <input  class="quantity-input"  formControlName="quantity" value="{{order.quantity}}">
+          <button type="button" class="btn btn-success btn-number"  style="background-color: #f6e5dc;  color: black" (click)="quantity('+', order)">
+            +</button>
+        </div>
+      </div>
     </div>
   </div>
-  <div *ngIf="orders.length>0" class="buy-button">Buy now </div>
+  <div *ngIf="orders.length>0" class="buy-button"> Buy now </div>
 </div>
 </div>
