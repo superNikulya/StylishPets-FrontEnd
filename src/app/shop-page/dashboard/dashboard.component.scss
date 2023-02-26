@@ -3,10 +3,9 @@ $coffee-color: #fff6f2;
 $poppins-extralight-font: poppins-extralight,poppins,sans-serif;
 $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
   .dashboard {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
     padding: 25px;
-    flex-wrap: wrap;
     .default-product {
       margin: 15px;
       padding: 5px;
@@ -16,8 +15,6 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
       text-align: center;
       align-items: center;
       background-color: #ffffff;
-      width: 180px;
-      height: 230px;
       cursor: pointer;
       .product-image {
         width: 100%;

@@ -1,10 +1,17 @@
 <div class="wrapper">
 <div class="cart-window">
   <div class="cart-title">Cart</div>
-  <div *ngFor="let order of orders">
-    <div  class="name">{{order.name}}</div>
-    <div class="price">{{order.price}}</div>
-    <div></div>
+  <div class="empty-block">there are no products</div>
+  <div class="order-flex" *ngFor="let order of orders">
+    <div class="default-order">
+      <img src="{{order.imageSrc}}" class="img">
+      <div class="inner-flex">
+        <div class="name">{{order.name}}</div>
+        <div class="price">{{order.price}}$</div>
+        <div class="quantity">quantity: {{order.quantity}}</div>
+    </div>
+    </div>
   </div>
+  <div *ngIf="orders.length>0" class="buy-button">Buy now </div>
 </div>
 </div>

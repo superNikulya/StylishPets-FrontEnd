@@ -3,7 +3,9 @@ $coffee-color: #fff2ef;
 $poppins-extralight-font: poppins-extralight,poppins,sans-serif;
 $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
 .form-content-wrapper {
-  width: 600px;
+  position: absolute;
+  width: 65%;
+  background-color: white;
   .categories-window {
     display: flex;
     flex-direction: column;
@@ -120,7 +122,7 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
     }
     .image{
       display: flex;
-      width: 40% ;
+      width: 20% ;
       .image-preview{
         width: 100%;
       }
