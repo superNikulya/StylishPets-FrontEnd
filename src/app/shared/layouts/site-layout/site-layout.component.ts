@@ -2,17 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Category} from "../../services/interfaces";
 import {Router} from "@angular/router";
+import {OrderService} from "../../services/order.service";
 
 @Component({
   selector: 'app-site-layout',
   templateUrl: './site-layout.component.html',
   styleUrls: ['./site-layout.component.scss'],
 })
-export class SiteLayoutComponent implements OnInit {
-  isAdmin: boolean = false;
-  condition: boolean = false;
+export class SiteLayoutComponent {
+  condition = false;
   categories: Category[] = [];
-  cartCondition: boolean = false
+  cartCondition = false;
   links = [
     {url: '/home', name: 'Home'},
     {url: '/shop', name: 'Shop'},
@@ -23,17 +23,14 @@ export class SiteLayoutComponent implements OnInit {
   ];
 
   constructor(
-    private router: Router,
     public auth: AuthService,
+    public orderService: OrderService
   ) {}
 
-  ngOnInit(): void {
-      this.auth.isAdmin.subscribe(isAdmin => this.isAdmin = isAdmin);
-  }
   cart(){
-    this.cartCondition = !this.cartCondition
+    this.orderService.cartOpenClose();
   }
   toggle() {
-      this.condition = !this.condition;
+    this.condition = !this.condition;
   }
 }

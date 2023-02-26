@@ -5,11 +5,11 @@ import {RouterModule, Routes} from "@angular/router";
 
 const routes: Routes = [
   {path: '', component: ShopPageComponent, children: [
-      {path:'', redirectTo:'all-products', pathMatch:'full'},
-      {path: ':id' , component: DashboardComponent},
-      {path: 'all-products', component: DashboardComponent},
-    ]},
-]
+    {path:'', redirectTo:'all-products', pathMatch:'full'},
+    {path: ':id' , component: DashboardComponent},
+    {path: 'all-products', component: DashboardComponent},
+  ]},
+];
 @NgModule({
   imports: [
     RouterModule.forChild(routes)

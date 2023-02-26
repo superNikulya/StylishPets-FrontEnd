@@ -6,16 +6,13 @@ import {AuthService} from "./shared/services/auth.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-    constructor(private auth: AuthService) {
+  constructor(private auth: AuthService) {
+  }
+  title = 'client';
+  ngOnInit (){
+    const potentialToken = localStorage.getItem('auth-token');
+    if (potentialToken!==null){
+      this.auth.setToken(potentialToken);
     }
-    title = 'client';
-    ngOnInit (){
-        const potentialToken = localStorage.getItem('auth-token')
-        if (potentialToken!==null){
-            this.auth.setToken(potentialToken)
-        }
-    }
-    cd() {
-        console.log('Cd entered root')
-    }
+  }
 }

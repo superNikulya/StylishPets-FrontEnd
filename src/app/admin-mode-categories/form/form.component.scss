@@ -4,7 +4,7 @@ $poppins-extralight-font: poppins-extralight,poppins,sans-serif;
 $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
 .form-content-wrapper {
   position: absolute;
-  width: 70%;
+  width: 65%;
   background-color: white;
   .categories-window {
     display: flex;
@@ -19,6 +19,17 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+      .snackbar {
+        width: 200px;
+        height: 40px;
+        padding: 10px;
+        background-color: #ffe4e4;
+        font-family: $poppins-semibold-font;
+        color: #000000;
+        font-size: 15px;
+        text-align: center;
+        margin: 15px;
+      }
       .category-name-input {
         text-align: center;
         color: #000000;
@@ -44,6 +55,7 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
       }
     }
   }
+
   .product-title{
     text-align: center;
     font-family: $poppins-semibold-font;
@@ -110,7 +122,7 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
     }
     .image{
       display: flex;
-      width: 40% ;
+      width: 20% ;
       .image-preview{
         width: 100%;
       }

@@ -13,18 +13,21 @@ import {Observable} from "rxjs";
 export class AdminModeCategoriesComponent implements OnInit {
   // @ts-ignore
   @ViewChild('input') inputRef: ElementRef;
-  myForm: FormGroup = new FormGroup({})
-  categories?: Observable<Category[]>;
+  myForm: FormGroup = new FormGroup({});
+  categories!: Observable<Category[]>;
   currentCategory: number | null = null;
   // @ts-ignore
-  image: File
+  image: File;
   // @ts-ignore
   category: Category;
+  categoryId: string| undefined ='';
   updatedCategoryId?: string | null;
+  categoryName ='';
+  // @ts-ignore
   constructor(
     private route: ActivatedRoute,
     private categoriesService: CategoriesService,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.myForm = new FormGroup({
@@ -41,14 +44,14 @@ export class AdminModeCategoriesComponent implements OnInit {
     this.updatedCategoryId = id;
     setTimeout(() => {
       this.updatedCategoryId = null;
-    }, 1000)
+    }, 1000);
   }
 
   updateCategories() {
-      this.categories  = this.categoriesService.getAll()
-    }
+    this.categories = this.categoriesService.getAll();
+  }
 
   onCategoryDelete(){
-    this.updateCategories()
+    this.updateCategories();
   }
 }

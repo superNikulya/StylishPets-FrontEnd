@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {OrderService} from "../shared/services/order.service";
 import {Order} from "../shared/services/interfaces";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-cart',
@@ -8,25 +9,32 @@ import {Order} from "../shared/services/interfaces";
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  orders: Order[] =[]
+  orders: Order[] =[];
+  condition = false;
+  //@ts-ignore
+  quantityForm: FormGroup;
   constructor(
-    private orderService: OrderService,
+    public orderService: OrderService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.getItems()
+    this.quantityForm = this.fb.group({
+      quantity: [1, [Validators.max(100),Validators.min(1)]]
+    });
+
+
+    this.orderService.Orders.subscribe(orders=>{
+      this.orders = orders;
+    }
+    );
   }
-  changeQuantity(condition: 'plus'| 'minus', order: Order){
-    if(condition === "minus"){
-      order.quantity--
-    }else{
-      (condition === "plus")
-      order.quantity++
+  quantity(value: string, order: Order){
+    if(value==="-"){
+      order.quantity--;
+    }
+    else if(value==="+"){
+      order.quantity++;
     }
   }
-  getItems(){
-    this.orders = this.orderService.orders;
-    console.log(this.orders)
-  }
-
 }

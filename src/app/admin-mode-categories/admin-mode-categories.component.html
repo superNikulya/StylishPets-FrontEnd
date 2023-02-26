@@ -6,14 +6,14 @@
       <div class="default-category-button"
            (click)="changeCategory(i)">
         <div class="default-category-button"
-             [ngStyle]="(category._id == updatedCategoryId) ? {'color': '#e3ae25'}: {'color':'black'}">
+             [ngStyle]="(category._id ===updatedCategoryId) ? {'color': '#e3ae25'}: {'color':'black'}">
           {{category.name}}
         </div>
       </div>
     </div>
   </div>
   <div *ngFor="let category of categories| async ; let i = index">
-  <app-form *ngIf="currentCategory==i"
+  <app-form *ngIf="currentCategory===i"
             (categoryUpdate)="onCategoryUpdate()"
             (categoryDelete)="onCategoryDelete()"
             [categoryName]="category.name"

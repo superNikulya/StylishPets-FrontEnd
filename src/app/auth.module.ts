@@ -12,6 +12,7 @@ import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.comp
 import {LoginPageComponent} from "./login-page/login-page.component";
 import {RegisterPageComponent} from "./register-page/register-page.component";
 import {AuthRoutingModule} from "../routing-modules/auth-routing.module";
+
 @NgModule(
   {
     declarations: [

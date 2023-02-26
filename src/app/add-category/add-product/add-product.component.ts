@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductsService} from "../../shared/services/products.service";
 import {Category, Product} from "../../shared/services/interfaces";
-import {SnackbarService} from "../../snackbar.service";
+import {SnackbarService} from "../../shared/services/snackbar.service";
 
 @Component({
   selector: 'app-add-product',
@@ -12,18 +12,18 @@ import {SnackbarService} from "../../snackbar.service";
 })
 
 export class AddProductComponent implements OnInit {
-  @Input ('categoryId') categoryId: string  = '';
+  @Input () categoryId  = '';
   // @ts-ignore
   @ViewChild('input') inputRef: ElementRef;
-  form: FormGroup = new FormGroup({})
-  myForm: FormGroup = new FormGroup({})
+  form: FormGroup = new FormGroup({});
+  myForm: FormGroup = new FormGroup({});
   // @ts-ignore
-  image: File
-  imagePreview: any =''
-  categories: Category[] =[]
+  image: File;
+  imagePreview: any ='';
+  categories: Category[] =[];
   // @ts-ignore
-  product: Product
-  products: Product[] = []
+  product: Product;
+  products: Product[] = [];
   constructor(
     private productsService: ProductsService,
     private route: ActivatedRoute,
@@ -33,54 +33,55 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-        "name": new FormControl(null, [Validators.required]),
-        "price": new FormControl(null, [Validators.required]),
-        "characteristic": new FormControl(null, [Validators.required]),
+      "name": new FormControl(null, [Validators.required]),
+      "price": new FormControl(null, [Validators.required]),
+      "characteristic": new FormControl(null, [Validators.required]),
     });
-    this.getProducts()
+    this.getProducts();
   }
 
   getProducts(){
     this.productsService.getByCategoryId(this.categoryId).subscribe(products => {
-      this.products = products
+      this.products = products;
     });
   }
 
   onFileUpload(event: any){
-    const file = event.target.files[0]
-    this.image = file
-    const reader = new FileReader()
-      reader.onload = () => {
-      this.imagePreview= reader.result
-    }
-    reader.readAsDataURL(file)
-    }
+    const file = event.target.files[0];
+    this.image = file;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview= reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
 
-    saveImgClick(){
-    this.inputRef.nativeElement.click()
-    }
+  saveImgClick(){
+    this.inputRef.nativeElement.click();
+  }
 
-    close(){
-      this.snackbarService.openSnackBar('Category and products was added', 'ok')
-      this.router.navigate(['admin-mode'])
-    }
+  close(){
+    this.snackbarService.openSnackBar('Category and products was added', 'ok');
+    this.router.navigate(['admin-mode']);
+  }
 
-    onSubmit(){
-    this.form.disable()
-      this.productsService.create(
-        this.form.value.name,
-        this.form.value.price,
-        this.form.value.characteristic,
-        this.categoryId,
-        this.image)
-        .subscribe(
-          product => {
-            this.product = product
-            this.getProducts()
-            this.snackbarService.openSnackBar('Product was added')
-            this.form.enable()
-            this.form.reset()
-            this.imagePreview = null
-          })
+  onSubmit(){
+    this.form.disable();
+    this.productsService.create(
+      this.form.value.name,
+      this.form.value.price,
+      this.form.value.characteristic,
+      this.categoryId,
+      this.image)
+      .subscribe(
+        product => {
+          this.product = product;
+          this.getProducts();
+          this.snackbarService.openSnackBar('Product was added');
+          this.form.enable();
+          this.form.reset();
+          this.imagePreview = null;
+        }
+      );
   }
 }

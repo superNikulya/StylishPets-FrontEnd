@@ -5,14 +5,17 @@ import {Subscription} from "rxjs";
 import {AuthService} from "../shared/services/auth.service";
 import {Router} from "@angular/router";
 
+//kevinminion@gmail.com ( login for admin)
+//kevinthekevin (password for admin)
+
 @Component({
-    selector: 'app-login-page',
-    templateUrl: './login-page.component.html',
-    styleUrls: ['./login-page.component.scss']
+  selector: 'app-login-page',
+  templateUrl: './login-page.component.html',
+  styleUrls: ['./login-page.component.scss']
 })
 
 export class LoginPageComponent implements OnInit, OnDestroy {
-  subscription: Subscription = new Subscription()//отвечает за утечку данных
+  subscription: Subscription = new Subscription();
   myForm: FormGroup = new FormGroup({
     "name": new FormControl(),
     "password": new FormControl(null, [Validators.required, Validators.minLength(6)]),
@@ -27,23 +30,23 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if(this.subscription){
-      this.subscription.unsubscribe()
+      this.subscription.unsubscribe();
     }
   }
   onSubmit() {
-    this.myForm.disable()
+    this.myForm.disable();
     this.subscription= this.auth.login(this.myForm.value).subscribe({
       next: (v) => {
         if(this.auth.checkRole()){
-          this.auth.isAdmin.next(true)
-          this.router.navigate(['/admin-mode'])
-        } else { this.auth.isAdmin.next(false)
-          this.router.navigate(['/'])
+          this.auth.isAdmin.next(true);
+          this.router.navigate(['/admin-mode']);
+        } else { this.auth.isAdmin.next(false);
+          this.router.navigate(['/']);
         }
-        },
+      },
       error: (e) => {
-        console.warn(e,"does not work")
-        this.myForm.enable()
+        console.warn(e,"does not work");
+        this.myForm.enable();
       },
       complete: () =>
         console.info('complete')
@@ -52,11 +55,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.queryParams.subscribe ((params:Params)=>{
       if(params['registered']) {
-                //you can log in with your data
+        //you can log in with your data
       }
       else if (params['accessDenied']) {
-                //firstly you should log in
+        //firstly you should log in
       }
-    })
+    });
   }
 }

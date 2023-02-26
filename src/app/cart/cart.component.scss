@@ -65,21 +65,35 @@ $poppins-semibold-font: poppins-semibold,poppins,sans-serif;
           }
           .price{
             font-family: $poppins-semibold-font;
-            font-size: 20px;
-            margin: 5px;
+            font-size: 30px;
+            margin: 5%;
             font-weight: 600;
+          }
+          .input-group{
+            display: flex;
+            flex-direction: row;
+            margin: 4%;
+            .quantity-input{
+              width: 15%;
+              text-align: center;
+
+            }
           }
         }
       }
     }
     .buy-button{
       border: 1px solid lightgrey;
-      padding: 5px;
+      padding: 10px;
       margin: 5px;
       width: 30%;
       background-color: black;
       color: white;
-      justify-content: end;
+      font-size: 20px;
+      align-self: end;
+      &:hover{
+        background-color: grey;
+      }
     }
   }
 }

@@ -9,17 +9,17 @@ import {NgModule} from "@angular/core";
 
 const routes: Routes = [
   {path: '', component: AdminModeLayoutComponent , canActivate: [AuthGuard], children: [
-      {path:'', redirectTo:'admin-constructor', pathMatch:'full'},
-      {path: 'admin-categories', canActivate: [AuthGuard], component: AdminModeCategoriesComponent},
-      {path: 'admin-categories/new', canActivate: [AuthGuard], component: AddCategoryComponent},
-      {path: 'form-category/:id', canActivate: [AuthGuard], component: FormComponent},
-      {path: 'form-category', canActivate: [AuthGuard], component: FormComponent},
-      {path: 'admin-constructor', canActivate: [AuthGuard], component: AdminModeConstructorComponent},
-    ]},
-]
+    {path:'', redirectTo:'admin-constructor', pathMatch:'full'},
+    {path: 'admin-categories', canActivate: [AuthGuard], component: AdminModeCategoriesComponent},
+    {path: 'admin-categories/new', canActivate: [AuthGuard], component: AddCategoryComponent},
+    {path: 'form-category/:id', canActivate: [AuthGuard], component: FormComponent},
+    {path: 'form-category', canActivate: [AuthGuard], component: FormComponent},
+    {path: 'admin-constructor', canActivate: [AuthGuard], component: AdminModeConstructorComponent},
+  ]},
+];
 @NgModule({
   imports: [
-RouterModule.forChild(routes)
+    RouterModule.forChild(routes)
   ],
   exports: [
     RouterModule

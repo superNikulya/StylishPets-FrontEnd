@@ -10,10 +10,11 @@ export class SnackbarService {
     private _snackBar: MatSnackBar
   ) {}
   openSnackBar(message: string, action?: string) {
-    this._snackBar.open(message, action)
+    this._snackBar.open(message, action);
     if (action) {
-    } else {
-      setTimeout(() => this._snackBar.dismiss(), 2000)
+    }
+    else{
+      setTimeout(() => this._snackBar.dismiss(), 2000);
     }
   }
 }

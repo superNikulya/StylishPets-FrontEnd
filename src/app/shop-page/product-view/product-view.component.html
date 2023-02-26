@@ -1,16 +1,15 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="product$ | async as product">
   <div class="content-holder">
-
-    <div class="left-flex">
-      <img class="photo" src="{{product?.imageSrc}}">
-      <div class="characteristic">{{product?.characteristic}}</div>
+    <div class="left-flex" >
+      <img class="photo" src="{{product.imageSrc}}">
+      <div class="characteristic">{{product.characteristic}}</div>
     </div>
     <div class="right-flex">
-      <div class="name">{{product?.name}}</div>
-      <div class="price">${{product?.price}}</div>
+      <div class="name">{{product.name}}</div>
+      <div class="price">${{product.price}}</div>
       <br>
       <hr class="hr">
-      <label class="select-title">What about size?</label>
+      <label class="select-title" ></label>
         <mat-select class = "select"
                     placeholder="size is.." [(ngModel)]="productSize">
           <mat-option class="option" *ngFor="let size of sizes" [value]="size">
@@ -18,8 +17,8 @@
           </mat-option>
         </mat-select>
       <label class="select-title">What about quantity?</label>
-      <input type="number" min="1" [(ngModel)]="quantity"/>
-      <div class="add-to-cart" (click)="pushToCart()"> Add to cart  🤍</div>
+      <input type="number" min="1" [value]="1" #quantity/>
+      <div class="add-to-cart" (click)="pushToCart(product)"> Add to cart  🤍</div>
         <mat-label #message></mat-label>
       <div class="buy-button"> Buy now </div>
     </div>
